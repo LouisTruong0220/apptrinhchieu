@@ -1,0 +1,15 @@
+# Sinh ra bởi dung-app.py / Gradle — không đưa lên
+demo/
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties*
+android/app/src/main/assets/*
+!android/app/src/main/assets/actionRegistry.json
+*.apk
+# Khoá / token — tuyệt đối không đưa lên kho công khai
+cau-hinh/*.json
+!cau-hinh/telegram.mau.json
+khach-hang-tai-ve/
+__pycache__/
+node_modules/

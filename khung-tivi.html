@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roboworld — màn hình tivi gian hàng</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   TRANG TIVI — robot Nova tự phát ở http://<ip-robot>:8090 (MayChu.kt).
+   Tivi KHÔNG chép điểm ảnh màn robot: nó nhận TRẠNG THÁI (màn · sản phẩm · tab · ảnh · câu đang
+   đọc) qua SSE rồi tự vẽ bố cục cho màn to, phát đúng file MP3 giọng Yuna robot đang đọc.
+   Bố cục 1920×1080, co giãn theo khung trình duyệt (datCoChu). Viết JS kiểu ES5 + CSS grid
+   (không flex gap) vì trình duyệt tivi đời cũ (Tizen/webOS 2018–2020) không theo kịp Chrome mới.
+   ⚠ Không bao giờ hiện dữ liệu khách — robot cũng không gửi sang.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --do:#C13F28; --do-tuoi:#E83636; --do-dam:#8E2A1A; --dao:#FDE9E1;
+  --nen:#F4F6FA; --the:#FFFFFF; --vien:#E3E8F0; --chu:#151A22; --chu-nhat:#5B6675;
+  --bong:0 .4rem 1.4rem rgba(21,26,34,.10);
+}
+html{font-size:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI","Roboto","Be Vietnam Pro",system-ui,-apple-system,Arial,sans-serif;background:var(--nen);color:var(--chu);
+  width:100vw;height:100vh;overflow:hidden;line-height:1.4;cursor:none}
+[hidden]{display:none !important}
+.man{position:absolute;left:0;top:0;right:0;bottom:0;display:none;flex-direction:column}
+.man.hien{display:flex}
+
+/* Đầu trang chung */
+.dau{height:7.2rem;flex:0 0 auto;display:flex;align-items:center;padding:0 3rem;background:var(--the);box-shadow:var(--bong);position:relative;z-index:2}
+.dau img{height:3.6rem;margin-right:2rem}
+.dau .ten{flex:1;min-width:0}
+.dau .ten b{display:block;font-size:1.9rem;font-weight:900;color:var(--do);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dau .ten span{display:block;font-size:1.2rem;color:var(--chu-nhat)}
+.dau .gian{font-size:1.5rem;font-weight:800;color:#fff;background:var(--do);padding:.6rem 1.4rem;border-radius:3rem;white-space:nowrap}
+.than{flex:1;min-height:0;padding:2.2rem 3rem 7rem;position:relative}
+h1.tieu{font-size:3.1rem;font-weight:900;line-height:1.15;margin-bottom:1.6rem}
+h1.tieu em{font-style:normal;color:var(--do)}
+
+/* MÀN CHỜ */
+#tv-cho{background:#000}
+#tv-cho video{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
+.cho-phu{position:absolute;right:0;top:0;bottom:0;width:46%;padding:4rem 4rem 4rem 5rem;color:#fff;
+  background:linear-gradient(90deg,rgba(17,9,9,0) 0%,rgba(17,9,9,.82) 22%,rgba(17,9,9,.92) 100%);display:flex;flex-direction:column;justify-content:center}
+.cho-phu .logo-trang{background:#fff;border-radius:1rem;padding:.8rem 1.2rem;align-self:flex-start;margin-bottom:2rem}
+.cho-phu .logo-trang img{height:3.4rem;display:block}
+.cho-phu b{font-size:3.2rem;font-weight:900;line-height:1.12;display:block;margin-bottom:1rem}
+.cho-phu .phu{font-size:1.5rem;opacity:.85;margin-bottom:2.2rem}
+.cho-phu .moi{font-size:2.1rem;font-weight:800;background:var(--do-tuoi);border-radius:1.2rem;padding:1.2rem 1.6rem;align-self:flex-start;
+  animation:nhip 2.4s ease-in-out infinite}
+@keyframes nhip{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.cho-dai{position:absolute;left:0;right:0;bottom:0;height:9rem;background:rgba(17,9,9,.75);overflow:hidden}
+.cho-dai .chay{position:absolute;top:1rem;left:0;white-space:nowrap;animation:chay 90s linear infinite}
+.cho-dai .chay span{display:inline-block;vertical-align:top;width:12rem;height:7rem;margin-right:1rem;border-radius:.8rem;background:#fff center/contain no-repeat}
+@keyframes chay{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* LĨNH VỰC */
+.luoi-lv{display:grid;grid-template-columns:repeat(4,1fr);grid-gap:1.6rem}
+.the-lv{background:var(--the);border-radius:1.4rem;padding:1.6rem 1.8rem;box-shadow:var(--bong);border:.2rem solid transparent}
+.the-lv .bt{font-size:3.6rem;line-height:1}
+.the-lv b{display:block;font-size:1.75rem;font-weight:900;margin:.7rem 0 .4rem}
+.the-lv span{display:block;font-size:1.15rem;color:var(--chu-nhat);line-height:1.35}
+.the-lv .so{margin-top:.8rem;font-weight:800;color:var(--do);font-size:1.15rem}
+.the-lv.tatca{background:var(--do);color:#fff}.the-lv.tatca span,.the-lv.tatca .so{color:#fff;opacity:.9}
+
+/* DANH SÁCH */
+.luoi-sp{display:grid;grid-template-columns:repeat(6,1fr);grid-gap:1.3rem}
+.luoi-sp.it{grid-template-columns:repeat(5,1fr)}
+/* 13–18 dòng = 3 hàng × 6: ảnh thấp lại, tagline một dòng — không thì hàng cuối lọt xuống dưới phụ đề */
+.luoi-sp.nhieu .anh{height:8.4rem}.luoi-sp.nhieu .the-sp span{max-height:1.3em}.luoi-sp.nhieu .the-sp b{font-size:1.3rem}
+.the-sp{background:var(--the);border-radius:1.2rem;overflow:hidden;box-shadow:var(--bong)}
+.the-sp .anh{height:12rem;background:#fff center/contain no-repeat;border-bottom:.15rem solid var(--vien)}
+.the-sp .chu{padding:.8rem 1rem 1rem}
+.the-sp .nhom{font-size:.95rem;font-weight:800;text-transform:uppercase;letter-spacing:.02rem}
+.the-sp b{display:block;font-size:1.45rem;font-weight:900;margin:.2rem 0}
+.the-sp span{display:block;font-size:1rem;color:var(--chu-nhat);line-height:1.3;max-height:2.6em;overflow:hidden}
+
+/* CHI TIẾT */
+.ct{display:grid;grid-template-columns:57fr 43fr;grid-gap:2.4rem;height:100%}
+.ct-media{display:flex;flex-direction:column;min-height:0}
+.khung{flex:1;min-height:0;border-radius:1.6rem;overflow:hidden;position:relative;background:#111;box-shadow:var(--bong)}
+.khung .mo{position:absolute;left:-5%;top:-5%;width:110%;height:110%;background:center/cover no-repeat;filter:blur(2.2rem) brightness(.75)}
+.khung img,.khung video{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:contain}
+.thumb{height:6.4rem;margin-top:1rem;white-space:nowrap;overflow:hidden}
+.thumb span{display:inline-block;width:8.6rem;height:6.4rem;margin-right:.8rem;border-radius:.7rem;background:#fff center/cover no-repeat;
+  border:.25rem solid transparent;opacity:.55;position:relative}
+.thumb span.dang{border-color:var(--do);opacity:1}
+.thumb span.v:after{content:"▶";position:absolute;left:0;right:0;top:1.4rem;text-align:center;color:#fff;font-size:2rem;text-shadow:0 0 .6rem #000}
+.ct-phai{min-height:0;display:flex;flex-direction:column}
+.nhan{align-self:flex-start;color:#fff;font-weight:800;font-size:1.15rem;padding:.4rem 1rem;border-radius:2rem}
+.ct-phai h2{font-size:4rem;font-weight:900;line-height:1.05;margin:.7rem 0 .5rem}
+.ct-phai .tag{font-size:1.55rem;color:var(--chu-nhat);margin-bottom:1.2rem}
+.tab{display:flex;margin-bottom:1rem}
+.tab span{font-size:1.25rem;font-weight:800;padding:.55rem 1.2rem;border-radius:2rem;margin-right:.6rem;color:var(--chu-nhat);background:var(--the);border:.15rem solid var(--vien)}
+.tab span.dang{background:var(--do);color:#fff;border-color:var(--do)}
+.noi{flex:1;min-height:0;overflow:hidden;background:var(--the);border-radius:1.4rem;padding:1.4rem 1.6rem;box-shadow:var(--bong)}
+.noi .mo-ta{font-size:1.35rem;line-height:1.5;margin-bottom:1rem}
+.noi .tn div{padding:.55rem 0;border-top:.12rem solid var(--vien)}
+.noi .tn b{display:block;font-size:1.3rem}.noi .tn span{display:block;font-size:1.1rem;color:var(--chu-nhat)}
+.noi .ts div{display:grid;grid-template-columns:40% 60%;padding:.6rem 0;border-bottom:.12rem solid var(--vien);font-size:1.35rem}
+.noi .ts span{color:var(--chu-nhat)}.noi .ts b{font-weight:800}
+.noi .ph div{padding:.6rem 0;border-bottom:.12rem solid var(--vien)}
+.noi .ph b{display:block;font-size:1.3rem}.noi .ph span{display:block;font-size:1.1rem;color:var(--chu-nhat)}
+.noi .kh{margin-top:.9rem;font-size:1.15rem;background:var(--dao);border-radius:.8rem;padding:.7rem .9rem}
+
+/* DÙNG THỬ · FORM · CẢM ƠN */
+.dt-dau{display:grid;grid-template-columns:20rem 1fr;grid-gap:2.4rem;align-items:center;margin-bottom:2rem}
+.dt-dau .anh{height:15rem;border-radius:1.4rem;background:#fff center/contain no-repeat;box-shadow:var(--bong)}
+.dt-dau p{font-size:1.5rem;color:var(--chu-nhat)}
+.buoc{display:grid;grid-template-columns:repeat(4,1fr);grid-gap:1.6rem}
+.buoc div{background:var(--the);border-radius:1.4rem;padding:1.6rem;box-shadow:var(--bong);position:relative}
+.buoc .so{position:absolute;right:1.2rem;top:1rem;font-size:3rem;font-weight:900;color:var(--dao)}
+.buoc .bt{font-size:3rem}
+.buoc b{display:block;font-size:1.55rem;font-weight:900;margin:.6rem 0 .3rem}
+.buoc span{display:block;font-size:1.15rem;color:var(--chu-nhat)}
+.giua{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.giua .bt{font-size:8rem;line-height:1;margin-bottom:1.4rem}
+.giua h1{font-size:3.6rem;font-weight:900;line-height:1.15;max-width:80%}
+.giua h1 em{font-style:normal;color:var(--do)}
+.giua p{font-size:1.8rem;color:var(--chu-nhat);margin-top:1.4rem;max-width:70%}
+.giua .rieng{margin-top:2.4rem;font-size:1.35rem;background:var(--the);border-radius:3rem;padding:.8rem 1.8rem;box-shadow:var(--bong)}
+.giua .lien{margin-top:2rem;font-size:2rem;font-weight:900;color:var(--do)}
+
+/* PHỤ ĐỀ — câu robot đang đọc (hội chợ ồn, người đứng xa đọc được) */
+.phu-de{position:absolute;left:3rem;right:3rem;bottom:1.6rem;z-index:5;background:rgba(17,9,9,.88);color:#fff;border-radius:1.2rem;
+  padding:1rem 1.6rem 1rem 5rem;font-size:1.75rem;line-height:1.35;font-weight:600;transition:opacity .3s;opacity:0}
+.phu-de.hien{opacity:1}
+.phu-de:before{content:"🔊";position:absolute;left:1.5rem;top:.9rem;font-size:2rem}
+
+/* Bật tiếng · kết nối */
+.bat-tieng{position:absolute;right:2rem;top:8.2rem;z-index:9;background:var(--do-tuoi);color:#fff;font-size:1.5rem;font-weight:800;
+  padding:.9rem 1.5rem;border-radius:1rem;box-shadow:var(--bong);animation:nhip 2s ease-in-out infinite}
+.ket-noi{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);z-index:10;background:#fff;border-radius:1.6rem;padding:2.4rem 3rem;
+  box-shadow:0 1rem 3rem rgba(0,0,0,.25);text-align:center;max-width:60%}
+.ket-noi b{display:block;font-size:2.2rem;color:var(--do);margin-bottom:.6rem}
+.ket-noi span{font-size:1.4rem;color:var(--chu-nhat)}
+.cham{position:absolute;right:1rem;bottom:.6rem;z-index:6;width:.8rem;height:.8rem;border-radius:50%;background:#2BB673;opacity:.6}
+.cham.mat{background:#E83636}
+</style>
+</head>
+<body>
+
+<div class="man hien" id="tv-cho">
+  <video id="tv-bc" muted playsinline autoplay loop preload="auto"></video>
+  <div class="cho-phu">
+    <div class="logo-trang"><img src="__LOGO__" alt="Roboworld"></div>
+    <b id="cho-ten"></b>
+    <div class="phu" id="cho-phu"></div>
+    <div class="moi">👆 Mời quý khách chạm vào màn hình robot để khám phá robot</div>
+  </div>
+  <div class="cho-dai"><div class="chay" id="cho-chay"></div></div>
+</div>
+
+<div class="man" id="tv-lv">
+  <div class="dau"><img src="__LOGO__" alt=""><div class="ten"><b class="ten-sk"></b><span class="slogan"></span></div><div class="gian"></div></div>
+  <div class="than">
+    <h1 class="tieu">Quý khách muốn tìm hiểu robot trong <em>lĩnh vực nào</em>?</h1>
+    <div class="luoi-lv" id="luoi-lv"></div>
+  </div>
+</div>
+
+<div class="man" id="tv-ds">
+  <div class="dau"><img src="__LOGO__" alt=""><div class="ten"><b id="ds-ten"></b><span id="ds-phu"></span></div><div class="gian"></div></div>
+  <div class="than"><div class="luoi-sp" id="luoi-sp"></div></div>
+</div>
+
+<div class="man" id="tv-ct">
+  <div class="dau"><img src="__LOGO__" alt=""><div class="ten"><b class="ten-sk"></b><span class="slogan"></span></div><div class="gian"></div></div>
+  <div class="than">
+    <div class="ct">
+      <div class="ct-media"><div class="khung" id="khung"></div><div class="thumb" id="thumb"></div></div>
+      <div class="ct-phai">
+        <span class="nhan" id="ct-nhan"></span>
+        <h2 id="ct-ten"></h2>
+        <div class="tag" id="ct-tag"></div>
+        <div class="tab"><span id="tab-gioi_thieu">Giới thiệu</span><span id="tab-thong_so">Thông số kỹ thuật</span><span id="tab-phu_hop">Phù hợp với</span></div>
+        <div class="noi" id="ct-noi"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="man" id="tv-dt">
+  <div class="dau"><img src="__LOGO__" alt=""><div class="ten"><b>Đăng ký dùng thử miễn phí</b><span class="slogan"></span></div><div class="gian"></div></div>
+  <div class="than">
+    <div class="dt-dau"><div class="anh" id="dt-anh"></div><div><h1 class="tieu" id="dt-tieu"></h1><p id="dt-phu"></p></div></div>
+    <div class="buoc" id="dt-buoc"></div>
+  </div>
+</div>
+
+<div class="man" id="tv-form">
+  <div class="dau"><img src="__LOGO__" alt=""><div class="ten"><b>Đăng ký dùng thử miễn phí</b><span class="slogan"></span></div><div class="gian"></div></div>
+  <div class="than"><div class="giua">
+    <div class="bt">✍️</div>
+    <h1 id="form-tieu"></h1>
+    <p>Robot đến tận nơi · kỹ thuật Roboworld lắp đặt · báo cáo đánh giá · không ràng buộc</p>
+    <div class="rieng">🔒 Thông tin của quý khách chỉ hiện trên màn hình robot, không hiện lên tivi</div>
+  </div></div>
+</div>
+
+<div class="man" id="tv-camon">
+  <div class="dau"><img src="__LOGO__" alt=""><div class="ten"><b class="ten-sk"></b><span class="slogan"></span></div><div class="gian"></div></div>
+  <div class="than"><div class="giua">
+    <div class="bt">🎉</div>
+    <h1 id="camon-tieu"></h1>
+    <p>Đội tư vấn Roboworld sẽ gọi lại trong <b>24 giờ</b> để hẹn lịch mang robot tới trải nghiệm miễn phí.</p>
+    <div class="lien" id="camon-lien"></div>
+  </div></div>
+</div>
+
+<div class="phu-de" id="phu-de"></div>
+<div class="bat-tieng" id="bat-tieng" hidden>🔇 Bấm OK trên điều khiển (hoặc chạm màn hình) để bật tiếng</div>
+<div class="ket-noi" id="ket-noi"><b>Đang nối với robot…</b><span>Tivi và robot phải cùng mạng Wi-Fi. Robot phải đang mở app sự kiện.</span></div>
+<div class="cham mat" id="cham"></div>
+<audio id="am-giong" preload="auto"></audio>
+<audio id="am-nhac" src="nhac/nen-du-hanh.mp3" loop preload="auto"></audio>
+
+<script>
+/*__DU_LIEU__*/
+</script>
+<script>
+(function(){
+'use strict';
+var D = window.DU_LIEU || {};
+var SP = {}, LV = {};
+(D.san_pham || []).forEach(function(s){ SP[s.ma] = s; });
+(D.linh_vuc || []).forEach(function(l){ LV[l.ma] = l; });
+function $(s){ return document.querySelector(s); }
+function $$(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); }
+function thoat(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function nen(url){ return "background-image:url('" + url + "')"; }
+
+/* ── Trạng thái tivi đang hiện ── */
+var hien = { man: '', lv: null, loc: null, sp: '', tab: '', media: -1 };
+var coTieng = false;        // người trực đã bấm OK → trình duyệt cho phát tiếng
+var cheDo = 'tu-dong';      // robot gửi sang: 'robot' thì tivi câm
+var soGiongDaXu = -1, lanDau = true;
+var MAN = { 'mh-cho':'tv-cho', 'mh-lv':'tv-lv', 'mh-ds':'tv-ds', 'mh-ct':'tv-ct', 'mh-dt':'tv-dt', 'mh-form':'tv-form', 'mh-camon':'tv-camon' };
+
+/* ── Tiếng ── */
+var amG = $('#am-giong'), amN = $('#am-nhac');
+var NHAC_TO = 0.3, NHAC_NHO = 0.08, henPhuDe = null;
+function duocPhat(){ return coTieng && cheDo !== 'robot'; }
+function phat(a){ try{ var p = a.play(); if(p && p.catch) p.catch(function(){}); }catch(e){} }
+function nhacTheoMan(){
+  if(hien.man === 'mh-cho' && duocPhat()){ amN.volume = amG.paused ? NHAC_TO : NHAC_NHO; if(amN.paused) phat(amN); }
+  else { try{ amN.pause(); }catch(e){} }
+}
+function imGiong(){ try{ amG.pause(); }catch(e){} anPhuDe(); if(!amN.paused) amN.volume = NHAC_TO; }
+function docCau(g){
+  imGiong();
+  hienPhuDe(g.chu);
+  if(duocPhat()){
+    amG.src = 'giong/' + encodeURIComponent(g.id) + '.mp3';
+    amN.volume = NHAC_NHO;
+    phat(amG);
+  } else {
+    /* Tivi câm (chưa bật tiếng / chế độ chỉ robot): phụ đề vẫn hiện, tự tắt theo độ dài câu */
+    clearTimeout(henPhuDe); henPhuDe = setTimeout(anPhuDe, Math.max(2500, (g.chu || '').length * 75));
+  }
+}
+amG.addEventListener('ended', function(){ anPhuDe(); if(!amN.paused) amN.volume = NHAC_TO; });
+amG.addEventListener('error', function(){ clearTimeout(henPhuDe); henPhuDe = setTimeout(anPhuDe, 3000); });
+function hienPhuDe(chu){ if(!chu) return; clearTimeout(henPhuDe); var p = $('#phu-de'); p.textContent = chu; p.className = 'phu-de hien'; }
+function anPhuDe(){ clearTimeout(henPhuDe); $('#phu-de').className = 'phu-de'; }
+
+function moKhoaTieng(){
+  if(coTieng) return;
+  coTieng = true;
+  /* Trình duyệt chỉ cho phát tiếng sau một thao tác của người — phát thử ngay trong lượt bấm này */
+  amN.volume = 0; phat(amN); setTimeout(function(){ nhacTheoMan(); }, 300);
+  try{ var r = document.documentElement; (r.requestFullscreen || r.webkitRequestFullscreen || function(){}).call(r); }catch(e){}
+  veNutTieng();
+  noi();          // nối lại với ?tieng=1 để robot biết tivi đã có tiếng (chế độ Tự động → robot nhường loa)
+}
+['keydown','click','touchstart'].forEach(function(sk){ document.addEventListener(sk, moKhoaTieng, true); });
+function veNutTieng(){ $('#bat-tieng').hidden = coTieng || cheDo === 'robot'; }
+
+/* ── Vẽ từng màn ── */
+function veMan(id){
+  var tv = MAN[id] || 'tv-cho';
+  $$('.man').forEach(function(m){ m.className = 'man' + (m.id === tv ? ' hien' : ''); });
+  var bc = $('#tv-bc');
+  if(tv === 'tv-cho'){ if(!bc.src) bc.src = 'bieu-cam/cho_01.mp4'; phat(bc); } else { try{ bc.pause(); }catch(e){} }
+  if(tv !== 'tv-ct') dungVideoCt();
+}
+function veLinhVuc(){
+  var tong = (D.san_pham || []).length;
+  $('#luoi-lv').innerHTML = (D.linh_vuc || []).map(function(l){
+    return '<div class="the-lv"><div class="bt">' + l.icon + '</div><b>' + thoat(l.ten) + '</b><span>' + thoat(l.mo_ta) + '</span><div class="so">' + l.san_pham.length + ' dòng robot</div></div>';
+  }).join('') + '<div class="the-lv tatca"><div class="bt">🤖</div><b>Xem tất cả</b><span>Phục vụ · lễ tân · vệ sinh · vận chuyển</span><div class="so">' + tong + ' dòng robot</div></div>';
+}
+function veDanhSach(lv, loc){
+  var nhom = D.nhom || {};
+  var ds = lv && LV[lv] ? LV[lv].san_pham.map(function(m){ return SP[m]; }).filter(Boolean) : (D.san_pham || []);
+  if(!lv && loc) ds = ds.filter(function(s){ return s.nhom === loc; });
+  if(lv && LV[lv]){ $('#ds-ten').textContent = LV[lv].icon + ' ' + LV[lv].ten; $('#ds-phu').textContent = LV[lv].mo_ta; }
+  else { $('#ds-ten').textContent = loc && nhom[loc] ? nhom[loc].ten : 'Toàn bộ robot Roboworld';
+    $('#ds-phu').textContent = ds.length + ' dòng robot · PUDU · Gausium · OrionStar'; }
+  var l = $('#luoi-sp'); l.className = 'luoi-sp' + (ds.length <= 10 ? ' it' : ds.length > 12 ? ' nhieu' : '');
+  l.innerHTML = ds.map(function(s){
+    var n = nhom[s.nhom] || {};
+    return '<div class="the-sp"><div class="anh" style="' + nen('anh/' + s.ma + '/1.jpg') + '"></div><div class="chu"><div class="nhom" style="color:' + (n.mau || '#333') + '">' + thoat(n.ten || '') +
+      '</div><b>' + thoat(s.ten) + '</b><span>' + thoat(s.tagline) + '</span></div></div>';
+  }).join('');
+}
+function danhSachMedia(s){ var ds = []; if(s.video) ds.push({ video: true, anh: 1 }); for(var i = 1; i <= (s.so_anh || 5); i++) ds.push({ anh: i }); return ds; }
+function veSanPham(ma){
+  var s = SP[ma]; if(!s) return;
+  var n = (D.nhom || {})[s.nhom] || {};
+  $('#ct-nhan').textContent = (n.ten || '') + ' · ' + s.hang; $('#ct-nhan').style.background = n.mau || '#333';
+  $('#ct-ten').textContent = s.ten; $('#ct-tag').textContent = s.tagline;
+  $('#thumb').innerHTML = danhSachMedia(s).map(function(m, i){
+    return '<span id="th-' + i + '" class="' + (m.video ? 'v' : '') + '" style="' + nen('anh/' + s.ma + '/' + m.anh + '.jpg') + '"></span>'; }).join('');
+  hien.media = -1;
+}
+function dungVideoCt(){ var v = $('#ct-video'); if(v){ try{ v.pause(); }catch(e){} } }
+function veMedia(ma, i){
+  var s = SP[ma]; if(!s) return;
+  var ds = danhSachMedia(s); if(!ds.length) return;
+  i = ((i % ds.length) + ds.length) % ds.length;
+  var m = ds[i], k = $('#khung');
+  $$('#thumb span').forEach(function(b, j){ b.className = (ds[j] && ds[j].video ? 'v ' : '') + (j === i ? 'dang' : ''); });
+  if(m.video){
+    k.innerHTML = '<div class="mo" style="' + nen('anh/' + s.ma + '/1.jpg') + '"></div><video id="ct-video" muted playsinline autoplay src="video/' + s.ma + '.mp4"></video>';
+    phat($('#ct-video'));
+  } else {
+    var src = 'anh/' + s.ma + '/' + m.anh + '.jpg';
+    k.innerHTML = '<div class="mo" style="' + nen(src) + '"></div><img src="' + src + '" alt="">';
+  }
+}
+function veTab(ma, t){
+  var s = SP[ma]; if(!s) return;
+  ['gioi_thieu','thong_so','phu_hop'].forEach(function(x){ $('#tab-' + x).className = x === t ? 'dang' : ''; });
+  var o = $('#ct-noi');
+  if(t === 'thong_so'){
+    o.innerHTML = '<div class="ts">' + (s.thong_so || []).map(function(x){ return '<div><span>' + thoat(x[0]) + '</span><b>' + thoat(x[1]) + '</b></div>'; }).join('') + '</div>';
+  } else if(t === 'phu_hop'){
+    o.innerHTML = '<div class="ph">' + (s.phu_hop || []).map(function(x){ return '<div><b>' + thoat(x.noi) + '</b><span>' + thoat(x.vi_sao) + '</span></div>'; }).join('') + '</div>' +
+      (s.khach_hang ? '<div class="kh"><b>Đã triển khai:</b> ' + thoat(s.khach_hang) + '</div>' : '');
+  } else {
+    o.innerHTML = '<p class="mo-ta">' + thoat(s.mo_ta) + '</p><div class="tn">' +
+      (s.tinh_nang || []).map(function(x){ return '<div><b>' + thoat(x.t) + '</b><span>' + thoat(x.m) + '</span></div>'; }).join('') + '</div>';
+  }
+}
+function veDungThu(ma){
+  var s = SP[ma], dt = D.dung_thu || {};
+  $('#dt-anh').setAttribute('style', s ? nen('anh/' + s.ma + '/1.jpg') : '');
+  $('#dt-tieu').innerHTML = 'Trải nghiệm <em>' + thoat(s ? s.ten : 'robot') + '</em> miễn phí tại mặt bằng của quý khách';
+  $('#dt-phu').textContent = dt.phu_de || '';
+  $('#dt-buoc').innerHTML = (dt.buoc || []).map(function(b, i){
+    return '<div><div class="so">' + (i + 1) + '</div><div class="bt">' + b.icon + '</div><b>' + thoat(b.t) + '</b><span>' + thoat(b.m) + '</span></div>'; }).join('');
+  $('#form-tieu').innerHTML = 'Quý khách đang đăng ký dùng thử <em>' + thoat(s ? s.ten : 'robot') + '</em>';
+  $('#camon-tieu').innerHTML = 'Cảm ơn quý khách đã đăng ký dùng thử <em>' + thoat(s ? s.ten : 'robot') + '</em>!';
+}
+
+/* ── Nhận trạng thái từ robot ── */
+function nhan(s){
+  if(!s || !s.man) return;
+  cheDo = s.cheDo || 'tu-dong'; veNutTieng();
+  var doiMan = s.man !== hien.man;
+  if(doiMan){ veMan(s.man); imGiong(); }                       // luật ②: rời màn là im ngay — y như robot
+  if(s.man === 'mh-ds' && (doiMan || s.lv !== hien.lv || s.loc !== hien.loc)){ veDanhSach(s.lv, s.loc); hien.lv = s.lv; hien.loc = s.loc; }
+  if(s.sp && s.sp !== hien.sp){ veSanPham(s.sp); veDungThu(s.sp); hien.sp = s.sp; hien.tab = ''; }
+  if(s.man === 'mh-ct' && s.sp){
+    if(s.tab !== hien.tab){ veTab(s.sp, s.tab); hien.tab = s.tab; }
+    if(s.media !== hien.media || doiMan){ veMedia(s.sp, s.media); hien.media = s.media; }
+  }
+  if(!s.sp && doiMan) veDungThu('');
+  hien.man = s.man;
+  /* Giọng: phát khi số thứ tự câu MỚI. Lần nối đầu tiên thì bỏ qua câu đang dở — không đọc lại câu cũ. */
+  if(s.giong){
+    if(s.giong.so !== soGiongDaXu){ soGiongDaXu = s.giong.so; if(!lanDau) docCau(s.giong); }
+  } else imGiong();
+  lanDau = false;
+  nhacTheoMan();
+}
+
+/* ── Kết nối: SSE, trình duyệt không có EventSource thì hỏi định kỳ ── */
+var es = null, henHoi = null, lanNhanCuoi = 0;
+function trangThaiNoi(ok){ $('#cham').className = 'cham' + (ok ? '' : ' mat'); $('#ket-noi').hidden = ok; }
+function noi(){
+  if(location.protocol.indexOf('http') !== 0){ $('#ket-noi').innerHTML = '<b>Bản xem trên máy tính</b><span>Mở trang này từ địa chỉ robot: http://&lt;ip-robot&gt;:8090</span>'; return; }
+  var q = coTieng ? '?tieng=1' : '?tieng=0';
+  if(es){ try{ es.close(); }catch(e){} es = null; }
+  clearInterval(henHoi);
+  if(window.EventSource){
+    es = new EventSource('su-kien');
+    es.onopen = function(){ trangThaiNoi(true); };
+    es.onmessage = function(e){ lanNhanCuoi = Date.now(); trangThaiNoi(true); try{ nhan(JSON.parse(e.data)); }catch(x){} };
+    es.onerror = function(){ trangThaiNoi(false); };      // EventSource tự nối lại (retry: 2000)
+  }
+  /* NHỊP BÁO DANH — robot chỉ nhường loa cho tivi còn báo danh trong 6 giây gần nhất (tivi tắt nguồn
+     đột ngột thì luồng SSE không đóng, robot không biết). Không có EventSource thì đây là đường nhận chính. */
+  henHoi = setInterval(function(){
+    var x = new XMLHttpRequest(); x.open('GET', 'trang-thai' + q + '&t=' + Date.now()); x.timeout = 2000;
+    x.onload = function(){ if(es && es.readyState === 1) return; trangThaiNoi(true); try{ nhan(JSON.parse(x.responseText)); }catch(e){} };
+    x.onerror = x.ontimeout = function(){ if(!es) trangThaiNoi(false); };
+    x.send();
+  }, es ? 2000 : 600);
+}
+/* Nhịp tim robot gửi 15 giây/lần là dòng chú thích — không vào onmessage. Mất hẳn 40 giây thì nối lại. */
+setInterval(function(){ if(es && es.readyState === 2) noi(); }, 5000);
+
+function datCoChu(){ var r = Math.min(window.innerWidth / 1920, window.innerHeight / 1080); document.documentElement.style.fontSize = Math.max(6, 16 * r) + 'px'; }
+window.addEventListener('resize', datCoChu);
+
+function khoiDong(){
+  var sk = D.su_kien || {};
+  $('#cho-ten').textContent = sk.ten || '';
+  $('#cho-phu').textContent = (sk.gian_hang || '') + ' · ' + (sk.ngay || '') + ' · ' + (sk.dia_diem || '');
+  $$('.ten-sk').forEach(function(e){ e.textContent = sk.ten || ''; });
+  $$('.slogan').forEach(function(e){ e.textContent = sk.slogan || ''; });
+  $$('.gian').forEach(function(e){ e.textContent = sk.gian_hang || ''; });
+  $('#camon-lien').textContent = (sk.hotline ? 'Hotline ' + sk.hotline + ' · ' : '') + (sk.website || '');
+  var dai = (D.san_pham || []).map(function(s){ return '<span style="' + nen('anh/' + s.ma + '/1.jpg') + '"></span>'; }).join('');
+  $('#cho-chay').innerHTML = dai + dai;      // chép đôi để băng chạy vòng không đứt
+  veLinhVuc(); datCoChu(); veMan('mh-cho'); veNutTieng();
+  noi();
+}
+window.TIVI = { nhan: nhan, hien: hien, trangThai: function(){ return { coTieng: coTieng, cheDo: cheDo, dangDoc: !amG.paused, nguon: amG.src }; } };
+khoiDong();
+})();
+</script>
+</body>
+</html>

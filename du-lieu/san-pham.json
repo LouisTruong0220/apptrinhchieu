@@ -1,0 +1,1744 @@
+{
+  "_doc": [
+    "NGUỒN SỰ THẬT DUY NHẤT của app robot sự kiện — Tuần lễ Công nghiệp Công nghệ Việt Nam 2026.",
+    "Sửa ở đây → python dung-app.py → (nếu đổi câu đọc) python tools/sinh-giong.py → cài lại / adb push.",
+    "",
+    "NGUỒN SỐ LIỆU — không tự suy ra:",
+    "  · thông số kỹ thuật: ~/.claude/skills/roboworld-seo-content/references/product-catalog.md (22 model)",
+    "    Trang web roboworld.com.vn ghi nhiều thông số dạng '~' hoặc lệch catalog (PuduBot 2 web ghi 55 kg,",
+    "    catalog 39 kg; T600 web ghi 12 kg là lỗi gõ của 112 kg). App theo CATALOG. Lệch ghi ở _lech-web-catalog.md",
+    "  · mô tả, tính năng, ứng dụng: du-lieu/website/<slug>.txt — text bóc từ trang sản phẩm ngày 07/09/2026",
+    "  · khách hàng tiêu biểu: 03-knowledge/proof-points.json",
+    "  · sự kiện: roboworld.com.vn/thu_moi_tham_du_roboworld_viif_2026",
+    "",
+    "KHÔNG CÓ GIÁ trong app — giá do người nói, đó là lý do có nút Đăng ký dùng thử.",
+    "Mọi câu trong khối `doc` là để MÁY ĐỌC: số viết bằng chữ, câu ngắn, không ký hiệu.",
+    "Hotline dùng 0866 153 946 theo CLAUDE.md (web ghi 0986 900 161 — số cũ, không dùng)."
+  ],
+  "su_kien": {
+    "ten": "Tuần lễ Công nghiệp Công nghệ Việt Nam 2026",
+    "ten_ngan": "Tuần lễ Công nghiệp Công nghệ Việt Nam 2026",
+    "ngay": "9 – 11/09/2026",
+    "dia_diem": "Trung tâm Triển lãm Việt Nam (VEC), Đông Anh, Hà Nội",
+    "gian_hang": "Gian 17 · Hall 2",
+    "cong_ty": "Công ty Cổ phần Tập đoàn Roboworld",
+    "slogan": "Giải pháp tự động hóa với robot tự hành thông minh",
+    "hotline": "0866 153 946",
+    "website": "roboworld.com.vn",
+    "email": "sales@roboworld.com.vn",
+    "nang_luc": [
+      {
+        "so": "2023",
+        "chu": "Nhà phân phối PUDU Robotics đầu tiên tại Việt Nam"
+      },
+      {
+        "so": "3",
+        "chu": "Hãng uỷ quyền chính thức: PUDU · Gausium · OrionStar"
+      },
+      {
+        "so": "30+",
+        "chu": "Kỹ sư Robotics giàu kinh nghiệm"
+      },
+      {
+        "so": "30+",
+        "chu": "Đại lý & đối tác chiến lược"
+      }
+    ]
+  },
+  "du_hanh": {
+    "diem": [
+      "Diem 1",
+      "Diem 2",
+      "Diem 3",
+      "Diem 4",
+      "Diem 5"
+    ],
+    "diem_ve_cho": "Diem 1",
+    "cau_chao": [
+      "Xin chào quý khách! Em là Nova, robot lễ tân của Roboworld. Mời quý khách ghé gian hàng số mười bảy để trải nghiệm robot ạ.",
+      "Roboworld xin chào! Robot phục vụ, robot vệ sinh, robot vận chuyển công nghiệp đang chờ quý khách khám phá. Chạm vào màn hình của em nhé!",
+      "Quý khách đang tìm robot cho nhà máy hay nhà hàng? Chạm vào em, em giới thiệu ngay ạ.",
+      "Đăng ký dùng thử robot miễn phí ngay tại gian hàng Roboworld. Kỹ thuật viên sẽ đến tận nơi lắp đặt cho quý khách.",
+      "Em là robot lễ tân GreetingBot Nova. Quý khách muốn biết em làm được gì không? Chạm vào màn hình nhé!"
+    ]
+  },
+  "nhom": {
+    "phuc-vu": {
+      "ten": "Robot phục vụ",
+      "mau": "#C13F28"
+    },
+    "le-tan": {
+      "ten": "Robot lễ tân",
+      "mau": "#7A1FA2"
+    },
+    "ve-sinh": {
+      "ten": "Robot vệ sinh công nghiệp",
+      "mau": "#0E6E5C"
+    },
+    "van-chuyen": {
+      "ten": "Robot vận chuyển công nghiệp",
+      "mau": "#0B3C8D"
+    }
+  },
+  "linh_vuc": [
+    {
+      "ma": "nha-may",
+      "ten": "Nhà máy & Kho vận",
+      "icon": "🏭",
+      "mo_ta": "Vệ sinh nhà xưởng, vận chuyển vật tư 150–600 kg, chạy 3 ca",
+      "san_pham": [
+        "pudu-mt1",
+        "pudu-mt1-vac",
+        "pudu-mt1-max",
+        "pudu-t150",
+        "pudu-t300",
+        "pudu-t600",
+        "pudu-bg1",
+        "gausium-beetle",
+        "gausium-omnie"
+      ],
+      "doc": "Với nhà máy và kho vận, Roboworld có robot quét hút xơ vải, bụi công nghiệp, và robot vận chuyển tải từ một trăm năm mươi đến sáu trăm ki lô gam. Mời quý khách chọn một dòng máy để xem chi tiết."
+    },
+    {
+      "ma": "nha-hang",
+      "ten": "Nhà hàng & F&B",
+      "icon": "🍽️",
+      "mo_ta": "Bưng món tận bàn, thu hồi bát đĩa, giữ sàn khô sạch",
+      "san_pham": [
+        "bellabot-pro",
+        "bellabot",
+        "pudubot-2",
+        "kettybot-pro",
+        "pudu-sh1",
+        "pudu-cc1"
+      ],
+      "doc": "Với nhà hàng, robot phục vụ của Roboworld đang chạy tại hơn hai trăm nhà hàng Golden Gate. Bưng món tận bàn, thu hồi bát đĩa, và robot chà sàn giữ sàn luôn khô sạch. Mời quý khách chọn một dòng máy."
+    },
+    {
+      "ma": "khach-san",
+      "ten": "Khách sạn & Toà nhà",
+      "icon": "🏨",
+      "mo_ta": "Giao đồ tận phòng qua thang máy, vệ sinh sảnh, chở hành lý",
+      "san_pham": [
+        "flashbot-max",
+        "bellabot-pro",
+        "greetingbot-nova",
+        "pudu-cc1",
+        "pudu-sh1",
+        "gausium-phantas",
+        "pudu-t300"
+      ],
+      "doc": "Với khách sạn và toà nhà, robot giao đồ tận phòng tự đi thang máy, robot vệ sinh sảnh và hành lang, robot chở hành lý và đồ vải. Mời quý khách chọn một dòng máy."
+    },
+    {
+      "ma": "ban-le",
+      "ten": "Trung tâm thương mại & Bán lẻ",
+      "icon": "🛍️",
+      "mo_ta": "Quảng cáo di động, dẫn khách, vệ sinh sàn diện tích lớn",
+      "san_pham": [
+        "kettybot-pro",
+        "bellabot-pro",
+        "greetingbot-nova",
+        "pudu-mt1-max",
+        "pudu-bg1",
+        "pudu-cc1",
+        "gausium-phantas"
+      ],
+      "doc": "Với trung tâm thương mại và bán lẻ, robot vừa dẫn khách vừa chạy quảng cáo trên màn hình lớn, cùng robot vệ sinh sàn cho không gian rộng. Mời quý khách chọn một dòng máy."
+    },
+    {
+      "ma": "y-te",
+      "ten": "Bệnh viện & Y tế",
+      "icon": "🏥",
+      "mo_ta": "Lễ tân hướng dẫn người bệnh, giao vật tư, vệ sinh khử khuẩn",
+      "san_pham": [
+        "greetingbot-nova",
+        "flashbot-max",
+        "pudu-cc1",
+        "gausium-phantas",
+        "bellabot-pro"
+      ],
+      "doc": "Với bệnh viện, robot lễ tân đón tiếp và dẫn người bệnh tới đúng khoa, robot giao vật tư liên tầng, và robot vệ sinh sàn liên tục. Mời quý khách chọn một dòng máy."
+    },
+    {
+      "ma": "hanh-chinh",
+      "ten": "Hành chính công & Văn phòng",
+      "icon": "🏛️",
+      "mo_ta": "Robot lễ tân AI giải đáp thủ tục, dẫn tới đúng quầy",
+      "san_pham": [
+        "greetingbot-nova",
+        "bellabot-pro",
+        "pudu-cc1",
+        "gausium-beetle"
+      ],
+      "doc": "Với trung tâm hành chính công và văn phòng, robot lễ tân trí tuệ nhân tạo chào người dân, giải đáp thủ tục bằng tiếng Việt và dẫn tới đúng quầy. Mời quý khách chọn một dòng máy."
+    },
+    {
+      "ma": "su-kien",
+      "ten": "Sự kiện & Triển lãm",
+      "icon": "🎪",
+      "mo_ta": "Robot đón khách, phát quà, chạy key visual trên màn hình",
+      "san_pham": [
+        "greetingbot-nova",
+        "bellabot-pro",
+        "kettybot-pro",
+        "bellabot"
+      ],
+      "doc": "Với sự kiện và triển lãm, robot là điểm thu hút truyền thông: đón khách, phát quà, chiếu hình ảnh thương hiệu trên màn hình lớn. Roboworld có dịch vụ cho thuê theo ngày. Mời quý khách chọn một dòng máy."
+    }
+  ],
+  "san_pham": [
+    {
+      "ma": "bellabot-pro",
+      "ten": "BellaBot Pro",
+      "hang": "PUDU Robotics",
+      "nhom": "phuc-vu",
+      "tagline": "Robot phục vụ cao cấp kèm màn quảng cáo 18,5 inch",
+      "mo_ta": "Thế hệ mới của BellaBot: vừa giao món, thu hồi, dẫn khách, vừa là một màn hình truyền thông di động ngay tại điểm bán. Đèn khay và đèn viền hướng dẫn khách lấy đúng khay; tương tác bằng giọng nói, ánh sáng, chạm tai, chạm lưng.",
+      "tinh_nang": [
+        {
+          "t": "Màn hình 18,5 inch phía trước",
+          "m": "Chiếu TVC, thực đơn điện tử, khuyến mãi, key visual của thương hiệu"
+        },
+        {
+          "t": "5 chế độ vận hành",
+          "m": "Delivery · Recycle · Cruise · Guide · Birthday — một robot nhiều việc"
+        },
+        {
+          "t": "Đèn khay & đèn viền",
+          "m": "Khách lấy đúng khay khi giao nhiều đơn cùng lúc"
+        },
+        {
+          "t": "Lối đi chỉ 65 cm",
+          "m": "Hẹp nhất dòng BellaBot, vào được không gian bản thường không vào nổi"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "57 × 55 × 129 cm"
+        ],
+        [
+          "Trọng lượng",
+          "55 kg"
+        ],
+        [
+          "Tải trọng",
+          "40 kg (10 kg/khay, 4 khay)"
+        ],
+        [
+          "Khay",
+          "41 × 50 cm"
+        ],
+        [
+          "Màn hình",
+          "LCD 10,1\" + LCD 18,5\""
+        ],
+        [
+          "Tốc độ",
+          "0,2 – 1,2 m/s"
+        ],
+        [
+          "Hoạt động / sạc",
+          "11 giờ / 4,5 giờ"
+        ],
+        [
+          "Điều hướng",
+          "VSLAM + Marker + Lidar SLAM"
+        ],
+        [
+          "Lối đi tối thiểu",
+          "65 cm"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Nhà hàng cao cấp, chuỗi F&B, trung tâm tiệc cưới",
+          "vi_sao": "Tải 40 kg, đèn khay hướng dẫn; màn 18,5\" giới thiệu món signature, chiếu album cưới khi đi từng bàn"
+        },
+        {
+          "noi": "Trung tâm thương mại, siêu thị, showroom",
+          "vi_sao": "Chế độ tuần tra: vừa đi phát hàng mẫu vừa chiếu ưu đãi, mã QR trên màn hình"
+        },
+        {
+          "noi": "Khách sạn, resort 5 sao",
+          "vi_sao": "Sảnh đón tiếp: chỉ đường, lịch sự kiện, giới thiệu spa – gym – bar"
+        },
+        {
+          "noi": "Sự kiện, triển lãm, hành chính công",
+          "vi_sao": "Đã phục vụ sự kiện ngân hàng Cake, WinCommerce, Văn phòng Chính phủ; lễ tân tại TT Hành chính công Mông Dương"
+        }
+      ],
+      "khach_hang": "Golden Gate (Gogi House, Kichi-Kichi) · WinCommerce · Ngân hàng Cake · TT Hành chính công Mông Dương",
+      "doc": {
+        "gioi_thieu": "BellaBot Pro là robot phục vụ cao cấp nhất của PUDU. Bốn khay chở tới bốn mươi ki lô gam, đèn khay hướng dẫn khách lấy đúng món. Điểm khác biệt là màn hình mười tám phẩy năm inch phía trước, biến robot thành một kênh quảng cáo di động ngay tại bàn.",
+        "thong_so": "Máy cao một mét hai chín, nặng năm mươi lăm ki lô. Chạy mười một giờ, sạc bốn giờ rưỡi. Lối đi hẹp nhất chỉ cần sáu mươi lăm xen ti mét. Định vị bằng camera, marker và lidar.",
+        "phu_hop": "BellaBot Pro hợp với nhà hàng cao cấp, trung tâm tiệc cưới, trung tâm thương mại và sự kiện. Robot này đang phục vụ tại Gogi House, Kichi Kichi, và làm lễ tân ở trung tâm hành chính công."
+      }
+    },
+    {
+      "ma": "bellabot",
+      "ten": "BellaBot",
+      "hang": "PUDU Robotics",
+      "nhom": "phuc-vu",
+      "tagline": "Robot phục vụ mặt mèo — dòng chủ lực của hơn 200 nhà hàng Golden Gate",
+      "mo_ta": "Robot phục vụ phổ biến nhất Việt Nam. Bốn khay độc lập, tải 40 kg, giao nhiều bàn trong một lượt. Mặt mèo biểu cảm, chạm tai là phản ứng — khách gia đình và trẻ em tự chụp ảnh, quảng bá tự nhiên cho nhà hàng.",
+      "tinh_nang": [
+        {
+          "t": "Giải phóng đôi chân nhân viên",
+          "m": "Bưng bê tự động, nhân viên tập trung chăm khách và upsell"
+        },
+        {
+          "t": "4 khay · 40 kg",
+          "m": "Phục vụ nhiều bàn cùng lúc, đi êm nhờ hệ thống giảm chấn — nồi lẩu không sóng sánh"
+        },
+        {
+          "t": "Mặt mèo tương tác",
+          "m": "Biểu cảm sinh động, chạm tai/đầu là phản ứng, chế độ Birthday phát nhạc và lời chúc"
+        },
+        {
+          "t": "Phối hợp nhiều robot",
+          "m": "Tới 20 robot cùng lúc — lên món đồng loạt cho hàng trăm bàn tiệc"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "56,5 × 53,7 × 129 cm"
+        ],
+        [
+          "Trọng lượng",
+          "55 kg"
+        ],
+        [
+          "Tải trọng",
+          "40 kg (10 kg/khay, 4 khay)"
+        ],
+        [
+          "Khay",
+          "41 × 50 cm"
+        ],
+        [
+          "Tốc độ",
+          "0,5 – 1,2 m/s"
+        ],
+        [
+          "Leo dốc",
+          "≤ 5°"
+        ],
+        [
+          "Hoạt động / sạc",
+          "12 – 24 giờ (pin tháo rời) / 4,5 giờ"
+        ],
+        [
+          "Định vị",
+          "Marker (trần ≤ 8 m) hoặc Laser"
+        ],
+        [
+          "Lối đi tối thiểu",
+          "70 cm"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Nhà hàng lẩu, nướng, buffet, chuỗi F&B",
+          "vi_sao": "Giờ cao điểm giao nhiều bàn một lượt; pin tháo rời chạy suốt ca không dừng sạc"
+        },
+        {
+          "noi": "Trung tâm tiệc cưới, hội nghị",
+          "vi_sao": "Nhiều robot phối hợp lên món đồng loạt; Birthday Mode phát nhạc, hiện lời chúc"
+        },
+        {
+          "noi": "Khu vui chơi trẻ em, cà phê gia đình, tiệm bánh",
+          "vi_sao": "Trẻ em thích mặt mèo — điểm nhấn trải nghiệm, khách tự quay clip"
+        }
+      ],
+      "khach_hang": "Golden Gate 200+ nhà hàng (iSushi, Gogi House, Kichi-Kichi, Manwah, KPub) · Haidilao",
+      "doc": {
+        "gioi_thieu": "BellaBot là robot phục vụ mặt mèo được yêu thích nhất. Bốn khay chở bốn mươi ki lô gam, giao nhiều bàn trong một lượt. Đây là dòng chủ lực đang chạy tại hơn hai trăm nhà hàng của Golden Gate.",
+        "thong_so": "Máy cao một mét hai chín, nặng năm mươi lăm ki lô, tải bốn mươi ki lô gam. Pin tháo rời, chạy mười hai đến hai mươi bốn giờ. Lối đi tối thiểu bảy mươi xen ti mét.",
+        "phu_hop": "BellaBot hợp với nhà hàng lẩu nướng, buffet, trung tâm tiệc cưới và quán cà phê gia đình. Khách gia đình và trẻ em rất thích chạm tai mèo của robot."
+      }
+    },
+    {
+      "ma": "pudubot-2",
+      "ten": "PuduBot 2",
+      "hang": "PUDU Robotics",
+      "nhom": "phuc-vu",
+      "tagline": "Robot phục vụ thế hệ mới — nhẹ 39 kg, chạy 15 giờ, sạc tự động",
+      "mo_ta": "Robot phục vụ đa năng cho F&B: giao món và thu hồi bát đĩa. Nhẹ, pin bền, tự về trạm sạc khi pin thấp nên vận hành liên tục không cần người thay pin. Khay rộng 52 × 43 cm, cảm biến trọng lượng từng khay tự nhận biết đã lấy món.",
+      "tinh_nang": [
+        {
+          "t": "Chạy 15 giờ · sạc tự động",
+          "m": "Tự về trạm khi pin yếu, vận hành liên tục cả ngày lễ Tết"
+        },
+        {
+          "t": "Khay siêu rộng 52 × 43 cm",
+          "m": "Ba khay, tải tổng 40 kg; cảm biến khay tự chuyển bước khi khách đã lấy món"
+        },
+        {
+          "t": "Nhẹ 39 kg",
+          "m": "Linh hoạt triển khai, thích ứng nền có dốc nhẹ, môi trường vương nước nhẹ"
+        },
+        {
+          "t": "Chi phí đầu tư hợp lý nhất",
+          "m": "Phù hợp nhà hàng vừa và chuỗi mới muốn thử nghiệm trước khi mở rộng"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "58 × 53,5 × 129 cm"
+        ],
+        [
+          "Trọng lượng",
+          "39 kg"
+        ],
+        [
+          "Tải trọng",
+          "40 kg"
+        ],
+        [
+          "Khay",
+          "52 × 43,2 cm"
+        ],
+        [
+          "Tốc độ",
+          "0,5 – 1,2 m/s"
+        ],
+        [
+          "Hoạt động",
+          "15 giờ (không tải) / 12 giờ (đầy tải)"
+        ],
+        [
+          "Sạc",
+          "4 giờ · dây hoặc tự động"
+        ],
+        [
+          "Định vị",
+          "PUDU VSLAM+ & Laser SLAM"
+        ],
+        [
+          "Lối đi tối thiểu",
+          "80 cm"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Nhà hàng quy mô vừa, quán ăn gia đình, chuỗi F&B",
+          "vi_sao": "Giải pháp vận chuyển hiệu quả với chi phí hợp lý, khay rộng chở nhiều món"
+        },
+        {
+          "noi": "Trung tâm tiệc cưới, sảnh tiệc lớn",
+          "vi_sao": "Pin 12–15 giờ, chạy đủ cả ca tiệc dài không gián đoạn"
+        },
+        {
+          "noi": "Quán cà phê, chuỗi mới",
+          "vi_sao": "Thử nghiệm robot trước khi mở rộng toàn chuỗi"
+        }
+      ],
+      "khach_hang": "",
+      "doc": {
+        "gioi_thieu": "PuduBot hai là robot phục vụ thế hệ mới, nhẹ chỉ ba mươi chín ki lô nhưng chở được bốn mươi ki lô gam. Chạy tới mười lăm giờ và tự về trạm sạc, nên không cần ai thay pin.",
+        "thong_so": "Máy nặng ba mươi chín ki lô, tải bốn mươi ki lô gam, ba khay rộng năm mươi hai nhân bốn mươi ba xen ti mét. Chạy mười lăm giờ không tải, mười hai giờ đầy tải, sạc bốn giờ. Lối đi tối thiểu tám mươi xen ti mét.",
+        "phu_hop": "PuduBot hai hợp với nhà hàng quy mô vừa, quán ăn gia đình, trung tâm tiệc cưới, và các chuỗi mới muốn thử robot với chi phí đầu tư hợp lý."
+      }
+    },
+    {
+      "ma": "kettybot-pro",
+      "ten": "KettyBot Pro",
+      "hang": "PUDU Robotics",
+      "nhom": "phuc-vu",
+      "tagline": "Robot giao món kiêm lễ tân và quảng cáo — lối đi chỉ 52 cm",
+      "mo_ta": "Ba việc trong một máy nhỏ gọn: giao món, dẫn khách tới bàn, chạy quảng cáo trên màn 18,5 inch phía trước. Thân máy thon, đi được lối 52 cm — nơi BellaBot không vào nổi. Chủ động chào khi nhận ra có người trước máy.",
+      "tinh_nang": [
+        {
+          "t": "Lối đi chỉ 52 cm",
+          "m": "Vào được quán nhỏ, bàn ghế dày, hành lang hẹp"
+        },
+        {
+          "t": "Màn quảng cáo 18,5 inch",
+          "m": "Chiếu video khuyến mãi, bộ sưu tập mới; robot là màn hình quảng cáo di động 24/7"
+        },
+        {
+          "t": "Dẫn khách tới bàn",
+          "m": "Đón ở cửa, dẫn tới đúng bàn hoặc khu vực — giảm tải cho lễ tân"
+        },
+        {
+          "t": "Chủ động thu hút khách",
+          "m": "Camera nhận ra người tiến lại gần là tự bật lời chào, mời dùng thử, phát voucher"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "43,5 × 45 × 112 cm"
+        ],
+        [
+          "Trọng lượng",
+          "38 kg"
+        ],
+        [
+          "Tải trọng",
+          "10 kg/khay, 3 khay"
+        ],
+        [
+          "Khay",
+          "35,2 × 34 cm"
+        ],
+        [
+          "Màn hình",
+          "18,5 inch"
+        ],
+        [
+          "Tốc độ",
+          "0,2 – 1,2 m/s"
+        ],
+        [
+          "Hoạt động / sạc",
+          "9 giờ / 3,5 giờ"
+        ],
+        [
+          "Lối đi tối thiểu",
+          "52 cm"
+        ],
+        [
+          "Giọng nói",
+          "Phát nội dung cài sẵn theo kịch bản"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Trung tâm thương mại, siêu thị, chuỗi bán lẻ",
+          "vi_sao": "Đại sứ thương hiệu di động ở hành lang: chiếu video, mời dùng thử, phát voucher"
+        },
+        {
+          "noi": "Quán cà phê, trà sữa, nhà hàng lối đi hẹp",
+          "vi_sao": "Thân máy 45 cm luồn lách giữa bàn ghế dày"
+        },
+        {
+          "noi": "Sự kiện, đón khách",
+          "vi_sao": "Đã thử nghiệm phục vụ hành khách toa VIP Đường sắt Việt Nam (khai thác từ tháng 6/2026)"
+        }
+      ],
+      "khach_hang": "Tổng công ty Đường sắt Việt Nam — toa VIP",
+      "doc": {
+        "gioi_thieu": "KettyBot Pro là robot ba trong một: giao món, dẫn khách và chạy quảng cáo trên màn hình mười tám phẩy năm inch. Thân máy thon gọn, đi được lối chỉ năm mươi hai xen ti mét.",
+        "thong_so": "Máy cao một mét mười hai, nặng ba mươi tám ki lô, ba khay mỗi khay mười ki lô gam. Chạy chín giờ, sạc ba tiếng rưỡi. Lối đi tối thiểu năm mươi hai xen ti mét, hẹp nhất trong các dòng phục vụ.",
+        "phu_hop": "KettyBot Pro hợp với trung tâm thương mại, chuỗi bán lẻ, quán cà phê trà sữa có lối đi hẹp. Robot này đã phục vụ hành khách trên toa VIP của Đường sắt Việt Nam."
+      }
+    },
+    {
+      "ma": "flashbot-max",
+      "ten": "FlashBot Max",
+      "hang": "PUDU Robotics",
+      "nhom": "phuc-vu",
+      "tagline": "Robot giao đồ tận phòng — tự đi thang máy, khoang kín bảo mật",
+      "mo_ta": "Robot giao hàng liên tầng cho khách sạn, toà nhà, bệnh viện. Tự gọi và đi thang máy, khoang chứa đóng mở tự động, người nhận mở bằng mã. Giao đồ ăn, bưu phẩm, tài liệu, vật tư 24/7 mà không cần nhân viên đi cùng.",
+      "tinh_nang": [
+        {
+          "t": "Tự đi thang máy",
+          "m": "Gọi thang, vào ra, giao liền mạch giữa nhiều tầng"
+        },
+        {
+          "t": "Khoang kín bảo mật",
+          "m": "2–4 ngăn tuỳ chỉnh, tự đóng mở, kiểm soát truy cập — không thất lạc, riêng tư"
+        },
+        {
+          "t": "Thông báo khi tới nơi",
+          "m": "Gọi điện/hiển thị cho người nhận; khách xác thực bằng mã"
+        },
+        {
+          "t": "Tích hợp hệ thống toà nhà",
+          "m": "Thang máy, PMS khách sạn, IoT — gọi robot chỉ một chạm"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "53,8 × 53,4 × 105,2 cm"
+        ],
+        [
+          "Trọng lượng",
+          "60 kg"
+        ],
+        [
+          "Ngăn chứa",
+          "2 – 4 ngăn (đơn 18,7 × 41 × 28 cm · đôi 38 × 41 × 28 cm)"
+        ],
+        [
+          "Tải trọng",
+          "10 kg/khay"
+        ],
+        [
+          "Tốc độ",
+          "0,5 – 1,2 m/s"
+        ],
+        [
+          "Hoạt động / sạc",
+          "9 giờ / 4 giờ"
+        ],
+        [
+          "Điều hướng",
+          "VSLAM + Lidar SLAM"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Khách sạn, resort, căn hộ dịch vụ",
+          "vi_sao": "Giao đồ ăn, đồ giặt, bưu phẩm lên phòng ca đêm không cần người"
+        },
+        {
+          "noi": "Bệnh viện, phòng khám",
+          "vi_sao": "Chuyển vật tư, thuốc, hồ sơ giữa các khoa và tầng"
+        },
+        {
+          "noi": "Toà nhà văn phòng, trung tâm thương mại",
+          "vi_sao": "Giao tài liệu, hàng hoá liên tầng; tích hợp thang máy và hệ thống toà nhà"
+        }
+      ],
+      "khach_hang": "",
+      "doc": {
+        "gioi_thieu": "FlashBot Max là robot giao đồ tận phòng. Tự gọi thang máy, tự đi liên tầng, khoang chứa đóng kín và người nhận mở bằng mã. Giao đồ ăn, bưu phẩm, vật tư suốt ngày đêm.",
+        "thong_so": "Máy cao một mét lẻ năm, nặng sáu mươi ki lô, có từ hai đến bốn ngăn chứa tuỳ chỉnh, mỗi khay mười ki lô gam. Chạy chín giờ, sạc bốn giờ.",
+        "phu_hop": "FlashBot Max hợp với khách sạn, resort, căn hộ dịch vụ, bệnh viện và toà nhà văn phòng, nơi cần giao đồ liên tầng mà không muốn tốn nhân sự ca đêm."
+      }
+    },
+    {
+      "ma": "greetingbot-nova",
+      "ten": "GreetingBot Nova",
+      "hang": "OrionStar",
+      "nhom": "le-tan",
+      "tagline": "Robot lễ tân AI — chính là robot đang nói chuyện với quý khách",
+      "mo_ta": "Robot lễ tân và hướng dẫn thông minh: nhận diện người, chủ động chào, hỏi đáp bằng mô hình ngôn ngữ lớn hơn 30 ngôn ngữ, dẫn khách tới đúng nơi. Chạy 12–14 giờ, tự về sạc. Roboworld tự viết phần mềm chạy trên máy — như app đang chạy đây.",
+      "tinh_nang": [
+        {
+          "t": "Tiếp đón chủ động",
+          "m": "Camera nhận diện người tiến đến, robot chào trước và hiện hướng dẫn"
+        },
+        {
+          "t": "Hỏi đáp bằng AI",
+          "m": "Hiểu câu hỏi tự nhiên; Roboworld nạp sẵn dữ liệu riêng của đơn vị (thủ tục, khoa phòng, sản phẩm)"
+        },
+        {
+          "t": "Dẫn đường tận nơi",
+          "m": "Không chỉ chỉ đường — trực tiếp dẫn tới quầy, phòng khám, gian hàng"
+        },
+        {
+          "t": "Hơn 30 ngôn ngữ · 12–14 giờ",
+          "m": "Khách quốc tế thoải mái; tự về dock sạc khi pin thấp"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "55,8 × 52,5 × 135 cm"
+        ],
+        [
+          "Trọng lượng",
+          "56 kg"
+        ],
+        [
+          "Hệ điều hành",
+          "Android 9.0"
+        ],
+        [
+          "Camera đầu",
+          "13 MP"
+        ],
+        [
+          "Cảm biến",
+          "LiDAR · 3 camera chiều sâu · 2 fisheye · hồng ngoại định vị sạc · IMU"
+        ],
+        [
+          "Tốc độ",
+          "0,5 – 1,2 m/s"
+        ],
+        [
+          "Hoạt động / sạc",
+          "12 – 14 giờ / 4,5 giờ"
+        ],
+        [
+          "Kết nối",
+          "Wi-Fi 2.4G/5G · 4G"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Trung tâm hành chính công, trụ sở cơ quan",
+          "vi_sao": "Giải đáp thủ tục bằng tiếng Việt, dẫn dân tới đúng quầy — minh chứng chuyển đổi số theo Nghị quyết 57, Đề án 06"
+        },
+        {
+          "noi": "Bệnh viện, phòng khám",
+          "vi_sao": "Đón tiếp, hướng dẫn khoa phòng — đã triển khai tại Bệnh viện Việt Nam – Thụy Điển Uông Bí"
+        },
+        {
+          "noi": "Khách sạn, showroom, trung tâm thương mại",
+          "vi_sao": "Đại sứ đón tiếp tại sảnh, giới thiệu sản phẩm, phát voucher"
+        },
+        {
+          "noi": "Sự kiện, triển lãm",
+          "vi_sao": "Đi tuần chào khách, thuyết minh từng điểm, thu thông tin khách — như tại gian hàng này"
+        }
+      ],
+      "khach_hang": "Bệnh viện Việt Nam – Thụy Điển Uông Bí · Hội nghị Xúc tiến đầu tư Tây Ninh 2026 · Gian hàng Medinova",
+      "doc": {
+        "gioi_thieu": "Đây chính là em, GreetingBot Nova, robot lễ tân trí tuệ nhân tạo. Em nhận diện người, chủ động chào, trả lời câu hỏi bằng hơn ba mươi ngôn ngữ và dẫn khách tới đúng nơi. Phần mềm em đang chạy do chính kỹ sư Roboworld viết.",
+        "thong_so": "Em cao một mét ba lăm, nặng năm mươi sáu ki lô, chạy hệ điều hành Android. Có lidar, ba camera chiều sâu và camera mười ba megapixel. Em chạy mười hai đến mười bốn giờ rồi tự về sạc.",
+        "phu_hop": "Em hợp với trung tâm hành chính công, bệnh viện, khách sạn, showroom và sự kiện. Em đang làm lễ tân ở Bệnh viện Việt Nam Thụy Điển Uông Bí, và đã phục vụ Hội nghị Xúc tiến đầu tư tỉnh Tây Ninh."
+      }
+    },
+    {
+      "ma": "pudu-cc1",
+      "ten": "PUDU CC1",
+      "hang": "PUDU Robotics",
+      "nhom": "ve-sinh",
+      "tagline": "Robot vệ sinh 4 trong 1: quét, hút, chà, lau — êm dưới 70 dB",
+      "mo_ta": "Robot làm sạch thương mại cho văn phòng, khách sạn, bệnh viện, showroom. Tự nhận diện sàn đá hay thảm để đổi chế độ; sạch sát mép tường; trạm tự cấp – xả nước và sạc. Báo cáo diện tích, thời gian làm sạch theo thời gian thực.",
+      "tinh_nang": [
+        {
+          "t": "4 chế độ trong một máy",
+          "m": "Quét · hút bụi · chà sàn · lau khô — kể cả hút thảm"
+        },
+        {
+          "t": "Êm dưới 70 dB",
+          "m": "Làm việc ngay trong giờ hành chính mà không làm phiền"
+        },
+        {
+          "t": "Trạm tự cấp – xả nước",
+          "m": "Không cần cải tạo hệ thống cấp thoát nước; tự sạc, tự châm chất tẩy"
+        },
+        {
+          "t": "Vệ sinh số hoá",
+          "m": "Báo cáo diện tích, thời gian làm sạch trên điện thoại — có dữ liệu trả lời đoàn kiểm tra"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "62,9 × 55,2 × 69,5 cm"
+        ],
+        [
+          "Trọng lượng",
+          "75 kg"
+        ],
+        [
+          "Bề rộng làm sạch",
+          "50 cm (kèm chổi bên)"
+        ],
+        [
+          "Bình nước",
+          "Sạch 15 L · thải 15 L"
+        ],
+        [
+          "Lực hút",
+          "Tối đa 17.000 Pa"
+        ],
+        [
+          "Hiệu suất",
+          "700 – 1.000 m²/giờ"
+        ],
+        [
+          "Pin",
+          "Chà 5 giờ · quét-hút-lau 5 giờ · hút thảm 4 giờ · lau yên tĩnh 9 giờ"
+        ],
+        [
+          "Sạc",
+          "< 3 giờ"
+        ],
+        [
+          "Tốc độ · dốc",
+          "0,2 – 1,2 m/s · 8°"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Toà nhà văn phòng hạng A, trụ sở tập đoàn",
+          "vi_sao": "Độ ồn thấp, làm sạch góc bàn, chân tủ, hành lang hẹp trong giờ làm"
+        },
+        {
+          "noi": "Khách sạn, sảnh lounge VIP",
+          "vi_sao": "Tự nhận sàn đá và thảm: lau bóng đá, lên thảm là nâng chổi và hút mạnh"
+        },
+        {
+          "noi": "Bệnh viện, phòng khám, thẩm mỹ viện",
+          "vi_sao": "Làm sạch liên tục, lọc bụi mịn, giữ môi trường chuẩn y khoa"
+        },
+        {
+          "noi": "Showroom xe, trung tâm triển lãm, siêu thị",
+          "vi_sao": "Đẩy bụi khô, lau bóng; né người và xe bằng LiDAR + camera AI"
+        }
+      ],
+      "khach_hang": "",
+      "doc": {
+        "gioi_thieu": "PUDU CC một là robot vệ sinh bốn trong một: quét, hút bụi, chà sàn và lau khô. Chạy êm dưới bảy mươi đề xi ben nên làm việc ngay trong giờ hành chính. Tự nhận biết sàn đá hay thảm để đổi chế độ.",
+        "thong_so": "Máy làm sạch bảy trăm đến một nghìn mét vuông mỗi giờ, bề rộng năm mươi xen ti mét. Bình nước sạch và nước thải mỗi bình mười lăm lít. Chạy năm giờ, sạc dưới ba giờ, có trạm tự cấp xả nước.",
+        "phu_hop": "CC một hợp với toà nhà văn phòng, khách sạn, bệnh viện, showroom và siêu thị, những nơi cần sạch liên tục mà không được ồn."
+      }
+    },
+    {
+      "ma": "pudu-mt1",
+      "ten": "PUDU MT1",
+      "hang": "PUDU Robotics",
+      "nhom": "ve-sinh",
+      "tagline": "Robot quét hút nhà xưởng — tới 6.000 m²/giờ, nhận diện rác bằng AI",
+      "mo_ta": "Robot quét dọn công nghiệp cho nhà xưởng, kho bãi, không gian trên 100.000 m². Hai chổi đĩa xử lý rác thô như lá cây, chai lọ; hệ thống áp suất âm giữ bụi trong hộp chứa. Camera AI nhận diện rác, tuần tra và làm sạch từng điểm khi phát hiện bẩn.",
+      "tinh_nang": [
+        {
+          "t": "Tới 6.000 m²/giờ",
+          "m": "Chế độ làm sạch điểm; chế độ tiêu chuẩn 1.800 m²/giờ — thiết kế cho khu vực trên 100.000 m²"
+        },
+        {
+          "t": "AI nhận diện rác",
+          "m": "Camera phân loại rác theo thời gian thực, tuần tra thấy bẩn là xử lý ngay"
+        },
+        {
+          "t": "Kiểm soát bụi chủ động",
+          "m": "Thông gió áp suất âm + bộ lọc — không tung bụi thứ cấp"
+        },
+        {
+          "t": "Chạy 24/7",
+          "m": "Sạc dưới 3 giờ, tự về trạm, ba chu kỳ sạc mỗi ngày; đi thang máy và cửa tự động qua PUDU Link"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "84 × 60 × 49 cm"
+        ],
+        [
+          "Trọng lượng",
+          "65 kg"
+        ],
+        [
+          "Hiệu suất",
+          "1.800 m²/giờ (tiêu chuẩn) · 6.000 m²/giờ (điểm)"
+        ],
+        [
+          "Thùng rác",
+          "35 L"
+        ],
+        [
+          "Hoạt động / sạc",
+          "4 – 8 giờ / < 3 giờ"
+        ],
+        [
+          "Tốc độ",
+          "0,2 – 1,2 m/s"
+        ],
+        [
+          "Điều hướng",
+          "VSLAM + Marker + Lidar SLAM"
+        ],
+        [
+          "An toàn",
+          "Cảm biến chiều sâu 3D đa cảm biến"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Xưởng may mặc, dệt may",
+          "vi_sao": "Hút xơ vải liên tục, không cho xơ kịp phủ lại; có dữ liệu cho đoàn audit của nhãn hàng — đã chạy tại các nhà máy may"
+        },
+        {
+          "noi": "Nhà máy công nghiệp nặng, khu bụi nóng",
+          "vi_sao": "Đưa người ra khỏi khu vực vệ sinh nguy hiểm — đáp ứng ISO 45001"
+        },
+        {
+          "noi": "Tổng kho logistics, sân bay, nhà thi đấu",
+          "vi_sao": "Diện tích trên 100.000 m², rác thô lẫn bụi mịn"
+        }
+      ],
+      "khach_hang": "May 10 · Tinh Lợi · May Tam Quan · May S&D Quảng Bình (ngành may mặc)",
+      "doc": {
+        "gioi_thieu": "PUDU MT một là robot quét hút cho nhà xưởng và kho lớn. Làm sạch tới sáu nghìn mét vuông mỗi giờ. Hai chổi đĩa xử lý cả rác thô, camera trí tuệ nhân tạo nhận diện rác và tự tới dọn.",
+        "thong_so": "Máy nặng sáu mươi lăm ki lô, thùng rác ba mươi lăm lít. Hiệu suất một nghìn tám trăm mét vuông mỗi giờ ở chế độ tiêu chuẩn, sáu nghìn mét vuông ở chế độ làm sạch điểm. Chạy bốn đến tám giờ, sạc dưới ba giờ.",
+        "phu_hop": "MT một hợp với xưởng may, nhà máy công nghiệp nặng, tổng kho và sân bay. Robot này đang hút xơ vải tại nhiều nhà máy may, trong đó có May Mười."
+      }
+    },
+    {
+      "ma": "pudu-mt1-vac",
+      "ten": "PUDU MT1 Vac",
+      "hang": "PUDU Robotics",
+      "nhom": "ve-sinh",
+      "tagline": "Quét rác + hút bụi công suất cao — cho thảm và sàn cứng, lọc H11",
+      "mo_ta": "Bản chuyên hút bụi của dòng MT1: lực hút cao, bộ lọc H11 (tuỳ chọn H13) giữ bụi mịn, AI nhận diện chất liệu sàn. Hút thảm hội nghị, sàn xưởng khô, xơ vải, bụi đất xe nâng mang vào kho.",
+      "tinh_nang": [
+        {
+          "t": "Hút bụi công suất cao",
+          "m": "Miệng hút rộng 55 cm, bề rộng làm sạch 70 cm kèm chổi bên"
+        },
+        {
+          "t": "Lọc H11 / H13",
+          "m": "Giữ bụi mịn, cải thiện không khí xưởng — hợp phòng sạch, dược, điện tử"
+        },
+        {
+          "t": "Nhận diện chất liệu sàn",
+          "m": "Thảm hay sàn cứng đều tự chỉnh chế độ"
+        },
+        {
+          "t": "Lối đi 75 cm · cao 52 cm",
+          "m": "Chui dưới bàn, kệ thấp"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "84 × 60 × 49 cm"
+        ],
+        [
+          "Trọng lượng",
+          "75 kg"
+        ],
+        [
+          "Hiệu suất",
+          "Tối đa 1.400 m²/giờ"
+        ],
+        [
+          "Bề rộng làm sạch",
+          "70 cm (chổi bên) · hút 55 cm"
+        ],
+        [
+          "Thùng rác",
+          "6 L"
+        ],
+        [
+          "Lọc khí",
+          "H11 (tuỳ chọn H13)"
+        ],
+        [
+          "Hoạt động / sạc",
+          "3 – 6,5 giờ / < 3,5 giờ"
+        ],
+        [
+          "Lối đi tối thiểu",
+          "Rộng 75 cm · cao 52 cm"
+        ],
+        [
+          "Điều hướng",
+          "VSLAM + Marker + LiDAR SLAM"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Xưởng may, kho thành phẩm",
+          "vi_sao": "Thu xơ vải, vụn chỉ, bụi đất do xe nâng mang vào"
+        },
+        {
+          "noi": "Nhà máy điện tử, dược phẩm, phòng sạch",
+          "vi_sao": "Lọc H11/H13 giữ không khí đạt chuẩn ở hành lang, khu hậu cần khô"
+        },
+        {
+          "noi": "Trung tâm hội nghị, khách sạn 5 sao trải thảm",
+          "vi_sao": "Hút thảm diện tích lớn ở sảnh tiệc, hành lang dài"
+        }
+      ],
+      "khach_hang": "",
+      "doc": {
+        "gioi_thieu": "PUDU MT một Vac là bản chuyên hút bụi công suất cao. Bộ lọc H mười một giữ bụi mịn, trí tuệ nhân tạo nhận diện thảm hay sàn cứng để tự chỉnh chế độ.",
+        "thong_so": "Máy nặng bảy mươi lăm ki lô, hút tới một nghìn bốn trăm mét vuông mỗi giờ, bề rộng làm sạch bảy mươi xen ti mét. Chạy ba đến sáu tiếng rưỡi, sạc dưới ba tiếng rưỡi. Chui được dưới kệ cao năm mươi hai xen ti mét.",
+        "phu_hop": "MT một Vac hợp với xưởng may, nhà máy điện tử, dược phẩm và trung tâm hội nghị trải thảm, những nơi bụi mịn là vấn đề số một."
+      }
+    },
+    {
+      "ma": "pudu-mt1-max",
+      "ten": "PUDU MT1 Max",
+      "hang": "PUDU Robotics",
+      "nhom": "ve-sinh",
+      "tagline": "Quét hút hiệu năng cao nhất — 7.000 m²/giờ, LiDAR 3D, chạy 24/7",
+      "mo_ta": "Bản mạnh nhất của dòng MT1 cho đại siêu thị, tổng kho, sân bay, nhà máy lớn. Pin 60 Ah chạy tới 10 giờ, thùng rác 35 L, bề rộng làm sạch 70 cm. LiDAR SLAM 3D làm chủ không gian rộng, tránh xe nâng và người.",
+      "tinh_nang": [
+        {
+          "t": "Tới 7.000 m²/giờ",
+          "m": "Chế độ điểm; chế độ rộng 2.200 m²/giờ — hiệu suất cao nhất dòng MT1"
+        },
+        {
+          "t": "Chạy 5–10 giờ · pin 60 Ah",
+          "m": "Vận hành cả ba ca, hỗ trợ 24/7"
+        },
+        {
+          "t": "LiDAR SLAM 3D",
+          "m": "Định vị ổn định trong kho rộng, thiếu sáng, nhiều xe nâng qua lại"
+        },
+        {
+          "t": "Bền bỉ công nghiệp nặng",
+          "m": "Chịu tải tốt trong môi trường khắc nghiệt — đã chạy tại Nhà máy Sợi Yên Mỹ"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "84 × 60 × 67,5 cm"
+        ],
+        [
+          "Trọng lượng",
+          "85 kg"
+        ],
+        [
+          "Hiệu suất",
+          "2.200 m²/giờ (rộng) · 7.000 m²/giờ (điểm)"
+        ],
+        [
+          "Bề rộng làm sạch",
+          "70 cm"
+        ],
+        [
+          "Thùng rác",
+          "35 L"
+        ],
+        [
+          "Pin",
+          "60 Ah"
+        ],
+        [
+          "Hoạt động / sạc",
+          "5 – 10 giờ / < 3,5 giờ"
+        ],
+        [
+          "Tốc độ",
+          "0,2 – 1,2 m/s"
+        ],
+        [
+          "Điều hướng",
+          "VSLAM + Marker + LiDAR SLAM 3D"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Nhà máy sản xuất, khu công nghiệp, tổng kho logistics",
+          "vi_sao": "Bụi công nghiệp, vệt bánh xe nâng trên sàn epoxy, bê tông mài — chạy liên tục ba ca"
+        },
+        {
+          "noi": "Đại siêu thị, megamall",
+          "vi_sao": "Hàng vạn lượt khách mỗi ngày, dải làm sạch rộng dọn một lần đi qua"
+        },
+        {
+          "noi": "Sân bay, ga tàu, trung tâm triển lãm",
+          "vi_sao": "Diện tích hàng chục nghìn m², yêu cầu sạch và an toàn cao"
+        }
+      ],
+      "khach_hang": "Nhà máy Sợi Yên Mỹ – Hưng Yên",
+      "doc": {
+        "gioi_thieu": "PUDU MT một Max là robot quét hút mạnh nhất, làm sạch tới bảy nghìn mét vuông mỗi giờ. Pin sáu mươi am pe giờ chạy tới mười giờ, lidar ba chiều làm chủ những kho rộng nhiều xe nâng.",
+        "thong_so": "Máy nặng tám mươi lăm ki lô, bề rộng làm sạch bảy mươi xen ti mét, thùng rác ba mươi lăm lít. Hiệu suất hai nghìn hai trăm mét vuông mỗi giờ ở chế độ rộng và bảy nghìn ở chế độ điểm. Chạy năm đến mười giờ.",
+        "phu_hop": "MT một Max hợp với nhà máy lớn, tổng kho, đại siêu thị, sân bay. Robot này đang chạy tại Nhà máy Sợi Yên Mỹ ở Hưng Yên."
+      }
+    },
+    {
+      "ma": "pudu-sh1",
+      "ten": "PUDU SH1",
+      "hang": "PUDU Robotics",
+      "nhom": "ve-sinh",
+      "tagline": "Máy chà sàn thông minh siêu gọn 17 kg — xử lý tràn đổ tức thì",
+      "mo_ta": "Máy chà sàn bán tự động nhỏ gọn cho nhà hàng, cửa hàng, phòng khám: chà mạnh, hút khô ngay, len lỏi giữa bàn ghế và chân kệ. Màn hình cảm ứng giám sát chổi, lưỡi gạt, bình nước; hướng dẫn sử dụng ngay trên máy.",
+      "tinh_nang": [
+        {
+          "t": "Chà mạnh, hút khô ngay",
+          "m": "Sàn dầu mỡ, nước đổ — một lần đẩy là khô, an toàn cho khách"
+        },
+        {
+          "t": "Siêu gọn 17 kg",
+          "m": "Xoay trở 360°, sạch sát mép, vào lối đi hẹp giữa kệ hàng"
+        },
+        {
+          "t": "Bình nước kép 4 L + 4 L",
+          "m": "Nước sạch và nước bẩn tách riêng, hợp vệ sinh"
+        },
+        {
+          "t": "Màn hình hướng dẫn",
+          "m": "Giám sát vật tư tiêu hao, cảnh báo bình đầy, video hướng dẫn trên máy"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "49 × 53 × 120 cm"
+        ],
+        [
+          "Trọng lượng",
+          "17 kg"
+        ],
+        [
+          "Bề rộng làm sạch",
+          "44 cm · lưỡi gạt 49 cm"
+        ],
+        [
+          "Năng suất",
+          "1.100 – 1.600 m²/giờ"
+        ],
+        [
+          "Bình",
+          "Dung dịch 4 L · nước bẩn 4 L"
+        ],
+        [
+          "Pin",
+          "18 Ah · 70 phút (tiêu chuẩn) / 100 phút (ECO)"
+        ],
+        [
+          "Sạc",
+          "2,5 giờ"
+        ],
+        [
+          "Độ ồn",
+          "72 / 69 dB(A)"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Nhà hàng, quán cà phê, food court",
+          "vi_sao": "Vết thức ăn, dầu mỡ, lối đi hẹp giữa bàn — cặp đôi với BellaBot trong giải pháp nhà hàng"
+        },
+        {
+          "noi": "Cửa hàng tiện lợi, siêu thị, rạp, khu vui chơi",
+          "vi_sao": "Lối đi hẹp giữa kệ hàng, chân kệ và quầy thu ngân"
+        },
+        {
+          "noi": "Phòng khám, spa, thẩm mỹ viện, lớp học",
+          "vi_sao": "Nhiều phòng nhỏ 10–30 m², cần máy gọn, ồn thấp"
+        }
+      ],
+      "khach_hang": "",
+      "doc": {
+        "gioi_thieu": "PUDU SH một là máy chà sàn thông minh siêu gọn, chỉ mười bảy ki lô. Chà mạnh và hút khô ngay, sàn dầu mỡ hay nước đổ một lần đẩy là khô, len lỏi được giữa bàn ghế và chân kệ.",
+        "thong_so": "Máy nặng mười bảy ki lô, bề rộng chà bốn mươi bốn xen ti mét, năng suất một nghìn một trăm đến một nghìn sáu trăm mét vuông mỗi giờ. Bình dung dịch và nước bẩn mỗi bình bốn lít. Chạy bảy mươi đến một trăm phút, sạc hai tiếng rưỡi.",
+        "phu_hop": "SH một hợp với nhà hàng, quán cà phê, cửa hàng tiện lợi, siêu thị, phòng khám và spa, những nơi lối đi hẹp mà cần xử lý vết bẩn nhanh."
+      }
+    },
+    {
+      "ma": "pudu-bg1",
+      "ten": "PUDU BG1 · BG1 Pro",
+      "hang": "PUDU Robotics",
+      "nhom": "ve-sinh",
+      "tagline": "Robot chà sàn cỡ lớn — quét và chà trong một lần chạy, 6.000 m²/giờ",
+      "mo_ta": "Robot vệ sinh sàn tự động cho không gian rất lớn: quét rác và chà sâu trong cùng một lượt, bình nước sạch 75 L. Bàn chải mở rộng sát tường, sát kệ; AI nhận diện vết bẩn để tăng áp lực chà hoặc thu module quét khi gặp vùng ướt. Trạm all-in-one tự cấp nước, xả nước, sạc.",
+      "tinh_nang": [
+        {
+          "t": "Quét + chà một lần chạy",
+          "m": "Kết hợp sweeping và deep scrubbing — bớt số lần vận hành"
+        },
+        {
+          "t": "Chà mép mở rộng",
+          "m": "Bàn chải vươn ra sát tường, chân kệ — chỗ máy khác bỏ sót"
+        },
+        {
+          "t": "AI Spot Cleaning",
+          "m": "Thấy bẩn là xử lý; gặp vết cứng đầu tự tăng áp lực bàn chải"
+        },
+        {
+          "t": "Trạm all-in-one · bảo trì dưới 1 phút",
+          "m": "Tự cấp/xả nước, sạc; vật tư snap-on, tự gắn bàn chải"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "119,5 × 76 × 130,3 cm (có gạt) · 112 × 66 × 130,3 cm (không gạt)"
+        ],
+        [
+          "Trọng lượng",
+          "344 kg"
+        ],
+        [
+          "Hiệu suất",
+          "2.000 m²/giờ (toàn diện) · 6.000 m²/giờ (điểm)"
+        ],
+        [
+          "Bề rộng làm sạch",
+          "55 / 70,8 cm"
+        ],
+        [
+          "Bình",
+          "Nước sạch 75 L · thải 60 L · dung dịch 7 L · rác 5 L"
+        ],
+        [
+          "Pin · hoạt động",
+          "90 Ah · 7,5 giờ"
+        ],
+        [
+          "Sạc",
+          "3 – 4,5 giờ"
+        ],
+        [
+          "Tốc độ",
+          "BG1 0,2 – 1 m/s · BG1 Pro 0,2 – 1,2 m/s"
+        ],
+        [
+          "Điều hướng",
+          "Lidar + 3D VSLAM"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Sân bay, ga tàu, trung tâm thương mại lớn",
+          "vi_sao": "Lưu lượng người qua lại cao, cần vừa quét vừa chà liên tục"
+        },
+        {
+          "noi": "Nhà máy, tổng kho, bãi đỗ xe trong nhà",
+          "vi_sao": "Sàn epoxy diện tích rất lớn, vệt dầu, vệt bánh xe"
+        },
+        {
+          "noi": "Toà nhà có thang máy, cổng E-gate",
+          "vi_sao": "Điều khiển thang máy và cổng qua IoT — chạy nhiều tầng không người"
+        }
+      ],
+      "khach_hang": "",
+      "doc": {
+        "gioi_thieu": "PUDU BG một là robot chà sàn cỡ lớn, quét rác và chà sâu trong cùng một lượt chạy, tới sáu nghìn mét vuông mỗi giờ. Bình nước sạch bảy mươi lăm lít, có trạm tự cấp xả nước và sạc.",
+        "thong_so": "Máy nặng ba trăm bốn mươi bốn ki lô, bề rộng làm sạch bảy mươi xen ti mét. Nước sạch bảy mươi lăm lít, nước thải sáu mươi lít. Pin chín mươi am pe giờ chạy bảy tiếng rưỡi, sạc ba đến bốn tiếng rưỡi.",
+        "phu_hop": "BG một hợp với sân bay, ga tàu, trung tâm thương mại lớn, nhà máy và tổng kho, những mặt sàn rất rộng cần sạch liên tục."
+      }
+    },
+    {
+      "ma": "gausium-beetle",
+      "ten": "Gausium Beetle",
+      "hang": "Gausium",
+      "nhom": "ve-sinh",
+      "tagline": "Robot quét hút công nghiệp — LiDAR 3D, lọc HEPA tự làm sạch, 3.240 m²/giờ",
+      "mo_ta": "Robot quét và hút bụi công nghiệp thế hệ mới của Gausium. Lưu lượng gió tới 1.320 m³/giờ, thùng rác 45 L, lọc HEPA tự làm sạch. Điều hướng Gausium SLAM với LiDAR 3D, camera RGB và RGB-D — không cần dán vạch hay mã QR trên sàn.",
+      "tinh_nang": [
+        {
+          "t": "Hút mạnh 1.320 m³/giờ",
+          "m": "Bụi mịn, mạt liệu trong nhà xưởng, kho bãi"
+        },
+        {
+          "t": "Lọc HEPA tự làm sạch",
+          "m": "Giữ hiệu suất hút ổn định, ít bảo trì"
+        },
+        {
+          "t": "LiDAR 3D + camera",
+          "m": "Lập bản đồ nhanh, né vật cản động, không cần cải tạo mặt bằng"
+        },
+        {
+          "t": "Bề rộng 75 cm · thùng 45 L",
+          "m": "Ít dừng đổ rác, phủ nhanh diện tích lớn"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "96 × 65 × 68 cm"
+        ],
+        [
+          "Hiệu suất",
+          "3.240 m²/giờ (thường)"
+        ],
+        [
+          "Bề rộng làm sạch",
+          "75 cm (chổi bên)"
+        ],
+        [
+          "Lưu lượng gió",
+          "Tối đa 1.320 m³/giờ"
+        ],
+        [
+          "Thùng rác",
+          "45 L"
+        ],
+        [
+          "Hoạt động / sạc",
+          "5 giờ / < 2,5 giờ"
+        ],
+        [
+          "Tốc độ",
+          "1,2 m/s · làm sạch tối đa 1,4 m/s"
+        ],
+        [
+          "Cảm biến",
+          "3D LiDAR + RGB + RGB-D"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Nhà máy, kho bãi, bãi đỗ xe",
+          "vi_sao": "Bụi công nghiệp, mạt liệu, diện tích lớn — hút mạnh, thùng to"
+        },
+        {
+          "noi": "Toà nhà văn phòng, cửa hàng",
+          "vi_sao": "Đi được qua cửa tự động, lập bản đồ nhanh, sạc dưới 2,5 giờ"
+        },
+        {
+          "noi": "Không gian nhiều lối đi hẹp, layout phức tạp",
+          "vi_sao": "Né vật cản động thông minh thay vì chỉ dừng lại"
+        }
+      ],
+      "khach_hang": "",
+      "doc": {
+        "gioi_thieu": "Gausium Beetle là robot quét hút công nghiệp thế hệ mới. Lưu lượng gió tới một nghìn ba trăm hai mươi mét khối mỗi giờ, thùng rác bốn mươi lăm lít, bộ lọc HEPA tự làm sạch. Không cần dán vạch trên sàn.",
+        "thong_so": "Máy làm sạch ba nghìn hai trăm bốn mươi mét vuông mỗi giờ, bề rộng bảy mươi lăm xen ti mét. Chạy năm giờ, sạc dưới hai tiếng rưỡi. Dùng lidar ba chiều và camera chiều sâu.",
+        "phu_hop": "Beetle hợp với nhà máy, kho bãi, bãi đỗ xe và toà nhà văn phòng, những nơi có nhiều bụi mịn và diện tích lớn."
+      }
+    },
+    {
+      "ma": "gausium-omnie",
+      "ten": "Gausium Omnie",
+      "hang": "Gausium",
+      "nhom": "ve-sinh",
+      "tagline": "Robot lau chà sàn cao cấp — camera 360° + 3D, hút rác trước khi lau",
+      "mo_ta": "Robot lau sàn tự động cao cấp: nhận diện và xử lý cả rác rắn lẫn chất lỏng, hút thu rác trước rồi mới chà lau. Bình nước sạch 33 L, chà 2.621 m²/giờ, lau bụi 3.604 m²/giờ. Camera 360° và LiDAR 3D + 2D né người, xe nâng, quầy kệ mượt mà.",
+      "tinh_nang": [
+        {
+          "t": "Rắn + lỏng trong một lượt",
+          "m": "Hút rác rồi chà lau, sàn khô ráo tức thì"
+        },
+        {
+          "t": "Nhìn 360° + 3D",
+          "m": "Né người, xe nâng, quầy kệ mà không dừng chu trình"
+        },
+        {
+          "t": "Chà áp lực lớn",
+          "m": "Vệt dầu mỡ công nghiệp, vết bẩn cứng đầu trên epoxy, granite"
+        },
+        {
+          "t": "Tự động hoá toàn trình",
+          "m": "Tự vận hành theo lịch, tự về trạm, quản lý nhiều robot qua cloud"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "81 × 70 × 107 cm"
+        ],
+        [
+          "Bề rộng chà",
+          "52 cm"
+        ],
+        [
+          "Hiệu suất",
+          "Chà 2.621 m²/giờ · lau bụi 3.604 m²/giờ"
+        ],
+        [
+          "Bình",
+          "Nước sạch 33 L · thải 24 L"
+        ],
+        [
+          "Hoạt động",
+          "Chà 3 giờ · quét-lau 8 giờ"
+        ],
+        [
+          "Sạc",
+          "2 giờ"
+        ],
+        [
+          "Tốc độ làm sạch",
+          "Tối đa 1,4 m/s"
+        ],
+        [
+          "Leo dốc · lối đi",
+          "4,6° · tối thiểu 80 cm"
+        ],
+        [
+          "Cảm biến",
+          "LiDAR 3D + 2D · camera 3D · RGB"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Nhà máy sản xuất, kho vận, trung tâm logistics",
+          "vi_sao": "Sàn epoxy, vệt dầu, xe nâng qua lại — chà mạnh, né động"
+        },
+        {
+          "noi": "Trung tâm thương mại, sảnh lớn sàn granite",
+          "vi_sao": "Lau bóng diện tích rộng, tự chạy theo lịch ngoài giờ"
+        },
+        {
+          "noi": "Sân bay, ga, bệnh viện lớn",
+          "vi_sao": "Tần suất làm sạch nghiêm ngặt, cần dữ liệu quản lý từ xa"
+        }
+      ],
+      "khach_hang": "",
+      "doc": {
+        "gioi_thieu": "Gausium Omnie là robot lau chà sàn cao cấp. Xử lý cả rác rắn và chất lỏng: hút thu rác trước rồi mới chà lau. Camera ba trăm sáu mươi độ và lidar ba chiều né người và xe nâng rất mượt.",
+        "thong_so": "Bề rộng chà năm mươi hai xen ti mét, chà hai nghìn sáu trăm mét vuông mỗi giờ, lau bụi ba nghìn sáu trăm mét vuông. Bình nước sạch ba mươi ba lít. Chà ba giờ, quét lau tám giờ, sạc hai giờ.",
+        "phu_hop": "Omnie hợp với nhà máy, kho vận, trung tâm thương mại sàn đá, sân bay và bệnh viện lớn."
+      }
+    },
+    {
+      "ma": "gausium-phantas",
+      "ten": "Gausium Phantas",
+      "hang": "Gausium",
+      "nhom": "ve-sinh",
+      "tagline": "Robot vệ sinh đa năng nhỏ gọn — quét, hút, chà, lau; sát mép 0 mm",
+      "mo_ta": "Robot 4 trong 1 cho không gian vừa và nhỏ: quét, hút, chà, lau khô. Nhỏ gọn 54 × 44 cm, đi lối 60 cm, làm sạch sát mép tường 0 mm, chui dưới bàn. Kết nối trạm đa năng để tự sạc, tự đổ nước bẩn, châm nước sạch.",
+      "tinh_nang": [
+        {
+          "t": "4 trong 1",
+          "m": "Quét · hút · chà · lau khô — một máy cho toàn bộ quy trình"
+        },
+        {
+          "t": "Sát mép 0 mm",
+          "m": "Không góc chết, chui dưới bàn ghế"
+        },
+        {
+          "t": "Nhỏ gọn · lối đi 60 cm",
+          "m": "Khách sạn, văn phòng, cửa hàng có layout phức tạp"
+        },
+        {
+          "t": "Trạm đa năng khép kín",
+          "m": "Tự sạc, tự đổ nước bẩn, châm nước sạch, xả rác"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "54 × 44 × 61,7 cm"
+        ],
+        [
+          "Bề rộng",
+          "Chà 50 cm · chà/lau 33 cm · hút/quét 41 cm"
+        ],
+        [
+          "Hiệu suất",
+          "350 – 700 m²/giờ"
+        ],
+        [
+          "Hoạt động",
+          "Chà 4,5 giờ · hút 4 giờ · quét 14 giờ · lau 10 giờ"
+        ],
+        [
+          "Sạc",
+          "2 giờ"
+        ],
+        [
+          "Tốc độ",
+          "Tối đa 0,8 m/s"
+        ],
+        [
+          "Leo dốc · lối đi",
+          "8° · tối thiểu 60 cm"
+        ],
+        [
+          "Cảm biến",
+          "LiDAR + 3D + RGB"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Khách sạn, resort, sảnh VIP",
+          "vi_sao": "Sàn marble lẫn thảm dày, hành lang phòng — tự nhận bề mặt, đi êm ban đêm"
+        },
+        {
+          "noi": "Toà nhà văn phòng, phòng khám",
+          "vi_sao": "Nhiều phòng nhỏ, bàn ghế dày, cần sạch sát mép"
+        },
+        {
+          "noi": "Cửa hàng bán lẻ, showroom",
+          "vi_sao": "Layout phức tạp, nhiều góc hẹp, sàn bóng"
+        }
+      ],
+      "khach_hang": "",
+      "doc": {
+        "gioi_thieu": "Gausium Phantas là robot vệ sinh đa năng nhỏ gọn: quét, hút, chà và lau khô trong một máy. Làm sạch sát mép tường không còn góc chết, chui được dưới bàn, đi lối chỉ sáu mươi xen ti mét.",
+        "thong_so": "Máy chỉ năm mươi tư nhân bốn mươi tư xen ti mét, làm sạch ba trăm năm mươi đến bảy trăm mét vuông mỗi giờ. Chà bốn tiếng rưỡi, quét tới mười bốn giờ, sạc hai giờ. Leo dốc tám độ.",
+        "phu_hop": "Phantas hợp với khách sạn, toà nhà văn phòng, phòng khám, cửa hàng và showroom, những không gian vừa và nhỏ có nhiều góc hẹp."
+      }
+    },
+    {
+      "ma": "pudu-t150",
+      "ten": "PUDU T150",
+      "hang": "PUDU Robotics",
+      "nhom": "van-chuyen",
+      "tagline": "Robot vận chuyển công nghiệp tải 150 kg — lối đi 60 cm, chạy 12 giờ",
+      "mo_ta": "Robot vận chuyển tự hành cho nhà máy, kho xưởng, trung tâm logistics. Kéo/chở vật tư 150 kg theo tuyến lặp lại, đúng giờ đúng điểm. Sạc 2 giờ đạt 90%, chạy 12 giờ. Lối đi tối thiểu 60 cm, vượt ngưỡng cửa 20 mm, rãnh 35 mm.",
+      "tinh_nang": [
+        {
+          "t": "Tải 150 kg",
+          "m": "Thay người đẩy xe: cấp vật tư, thu bán thành phẩm giữa kho và chuyền"
+        },
+        {
+          "t": "Lối đi 60 cm",
+          "m": "Vào được lối hẹp giữa các chuyền may, kệ hàng"
+        },
+        {
+          "t": "Sạc 2 giờ · chạy 12 giờ",
+          "m": "Đủ ba ca với trạm sạc"
+        },
+        {
+          "t": "Vượt ngưỡng 20 mm · rãnh 35 mm",
+          "m": "Qua được ngưỡng cửa, khe thang, rãnh thoát nước xưởng"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "83,5 × 50 × 135 cm"
+        ],
+        [
+          "Trọng lượng",
+          "65 kg"
+        ],
+        [
+          "Tải trọng",
+          "150 kg"
+        ],
+        [
+          "Pin",
+          "30 Ah"
+        ],
+        [
+          "Sạc",
+          "2 giờ (0 → 90%)"
+        ],
+        [
+          "Hoạt động",
+          "12 giờ (không tải)"
+        ],
+        [
+          "Tốc độ",
+          "1,2 m/s"
+        ],
+        [
+          "Điều hướng",
+          "VSLAM + LiDAR SLAM"
+        ],
+        [
+          "Lối đi · ngưỡng · rãnh",
+          "60 cm · 20 mm · 35 mm"
+        ],
+        [
+          "Môi trường",
+          "0 – 40°C, trong nhà, nền phẳng"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Nhà máy may mặc, điện tử",
+          "vi_sao": "Cấp vải, khay linh kiện theo tuyến lặp lại; lối đi hẹp giữa chuyền"
+        },
+        {
+          "noi": "Kho xưởng, trung tâm logistics",
+          "vi_sao": "Kéo nhiều loại xe đẩy, tích hợp nhanh vào quy trình hiện có"
+        },
+        {
+          "noi": "Bước khởi đầu tự động hoá vận chuyển",
+          "vi_sao": "Tải vừa, chi phí vào cửa thấp hơn T300/T600"
+        }
+      ],
+      "khach_hang": "",
+      "doc": {
+        "gioi_thieu": "PUDU T một trăm năm mươi là robot vận chuyển công nghiệp tải một trăm năm mươi ki lô gam. Thay người đẩy xe, cấp vật tư đúng giờ đúng điểm theo tuyến lặp lại. Đi được lối hẹp sáu mươi xen ti mét.",
+        "thong_so": "Máy cao một mét ba lăm, nặng sáu mươi lăm ki lô, tải một trăm năm mươi ki lô gam. Sạc hai giờ được chín mươi phần trăm, chạy mười hai giờ. Vượt ngưỡng cửa hai xen ti mét, rãnh ba phẩy năm xen ti mét.",
+        "phu_hop": "T một trăm năm mươi hợp với nhà máy may, nhà máy điện tử, kho xưởng và trung tâm logistics, là bước khởi đầu tự động hoá vận chuyển nội bộ."
+      }
+    },
+    {
+      "ma": "pudu-t300",
+      "ten": "PUDU T300",
+      "hang": "PUDU Robotics",
+      "nhom": "van-chuyen",
+      "tagline": "Robot vận chuyển tải 300 kg — mạch máu nối kho với dây chuyền",
+      "mo_ta": "Robot vận chuyển tự hành (AMR) cho sản xuất và kho vận. Chở 300 kg, chạy 12 giờ không tải / 6 giờ đầy tải, lối đi 60 cm. Thay xe kéo thủ công, luân chuyển bán thành phẩm, pallet vật tư giữa các xưởng — không cần đổi quy trình hiện tại.",
+      "tinh_nang": [
+        {
+          "t": "Tải 300 kg",
+          "m": "Cuộn vải, khay linh kiện, pallet vật tư, hành lý – đồ vải khách sạn"
+        },
+        {
+          "t": "Không đổi quy trình",
+          "m": "Không dán vạch, không cải tạo mặt bằng — lập bản đồ rồi chạy"
+        },
+        {
+          "t": "Né người và xe kéo",
+          "m": "SLAM + LiDAR, đi êm nên sọt vải chồng cao vẫn an toàn trong lối hẹp"
+        },
+        {
+          "t": "PUDU Link",
+          "m": "Đi thang máy, cửa tự động — liên tầng, liên xưởng"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "83,5 × 50 × 135 cm"
+        ],
+        [
+          "Trọng lượng",
+          "65 kg"
+        ],
+        [
+          "Tải trọng",
+          "300 kg"
+        ],
+        [
+          "Pin",
+          "30 Ah"
+        ],
+        [
+          "Sạc",
+          "2 giờ"
+        ],
+        [
+          "Hoạt động",
+          "12 giờ (không tải) / 6 giờ (đầy tải)"
+        ],
+        [
+          "Tốc độ",
+          "1,2 m/s"
+        ],
+        [
+          "Điều hướng",
+          "VSLAM + LiDAR SLAM"
+        ],
+        [
+          "Lối đi · ngưỡng · rãnh",
+          "60 cm · 20 mm · 35 mm"
+        ],
+        [
+          "Môi trường",
+          "0 – 40°C"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Nhà máy may mặc",
+          "vi_sao": "Cấp vải, thu bán thành phẩm đúng chuyền, đúng giờ — đã triển khai tại May 10"
+        },
+        {
+          "noi": "Nhà máy điện tử, cơ khí, ô tô",
+          "vi_sao": "Phân phối khay linh kiện, chi tiết máy giữa các xưởng; không rung chấn"
+        },
+        {
+          "noi": "Kho logistics, thương mại điện tử",
+          "vi_sao": "Gom hàng từ kệ về khu đóng gói, nhân viên bớt đi bộ hàng km"
+        },
+        {
+          "noi": "Khách sạn lớn",
+          "vi_sao": "Chở hành lý, đồ vải, xe đẩy giữa các khu"
+        }
+      ],
+      "khach_hang": "May 10 · Hyundai Aluminum",
+      "doc": {
+        "gioi_thieu": "PUDU T ba trăm là robot vận chuyển tải ba trăm ki lô gam, được ví như mạch máu nối kho với dây chuyền. Không cần dán vạch hay đổi quy trình, lập bản đồ xong là chạy.",
+        "thong_so": "Máy cao một mét ba lăm, nặng sáu mươi lăm ki lô, tải ba trăm ki lô gam. Sạc hai giờ, chạy mười hai giờ không tải hoặc sáu giờ đầy tải. Lối đi tối thiểu sáu mươi xen ti mét.",
+        "phu_hop": "T ba trăm hợp với nhà máy may, nhà máy điện tử, cơ khí, kho logistics và khách sạn lớn. Robot này đang chạy tại May Mười và Hyundai Aluminum."
+      }
+    },
+    {
+      "ma": "pudu-t600",
+      "ten": "PUDU T600",
+      "hang": "PUDU Robotics",
+      "nhom": "van-chuyen",
+      "tagline": "Gã khổng lồ tải 600 kg — nhận diện kệ hàng, tự lấy đặt, đi thang máy",
+      "mo_ta": "Robot vận chuyển hạng nặng: 600 kg mỗi chuyến, giảm hẳn số lượt giao. Nhận diện vị trí kệ và tự lấy – đặt hàng; lập lịch thang máy rảnh; tự chọn giao thông một hay hai chiều trong lối hẹp khi chạy nhiều robot. Có cả bản T600 Underride cao 25,5 cm chui gầm xe, kệ.",
+      "tinh_nang": [
+        {
+          "t": "Tải 600 kg",
+          "m": "Linh kiện đúc, lốp, động cơ, pallet — thay xe nâng cơ khí"
+        },
+        {
+          "t": "Nhận diện kệ, tự lấy – đặt",
+          "m": "Kho không người: gom pallet từ nhập kho về lưu trữ, ra bốc dỡ"
+        },
+        {
+          "t": "Lập lịch thang máy",
+          "m": "Gọi thang rảnh, tránh ùn tắc giờ cao điểm ở kho cao tầng"
+        },
+        {
+          "t": "Bản Underride 25,5 cm",
+          "m": "Chui dưới xe đẩy, kệ hàng rồi nâng chở — tải cũng 600 kg"
+        }
+      ],
+      "thong_so": [
+        [
+          "Kích thước",
+          "96 × 50 × 135 cm"
+        ],
+        [
+          "Trọng lượng",
+          "112 kg"
+        ],
+        [
+          "Tải trọng",
+          "600 kg"
+        ],
+        [
+          "Pin",
+          "30 Ah"
+        ],
+        [
+          "Sạc",
+          "2 giờ"
+        ],
+        [
+          "Hoạt động",
+          "12 giờ"
+        ],
+        [
+          "Tốc độ",
+          "0,2 – 1,2 m/s"
+        ],
+        [
+          "Điều hướng",
+          "VSLAM + LiDAR SLAM"
+        ],
+        [
+          "Lối đi · vật cản · rãnh",
+          "70 cm · 10 mm · 35 mm"
+        ],
+        [
+          "T600 Underride",
+          "84,5 × 50 × 25,5 cm · 94 kg · lối đi 65 cm"
+        ]
+      ],
+      "phu_hop": [
+        {
+          "noi": "Nhà máy ô tô, cơ khí, chế tạo nặng",
+          "vi_sao": "Cụm chi tiết hàng trăm kg qua lại giữa phân xưởng — bớt rủi ro xe nâng"
+        },
+        {
+          "noi": "Tổng kho, kho thương mại điện tử mật độ cao",
+          "vi_sao": "Lấy – thả pallet tự động theo kệ thông minh"
+        },
+        {
+          "noi": "Nhà máy điện tử quy mô lớn, phòng sạch",
+          "vi_sao": "Trạm trung chuyển khay linh kiện theo mẻ lớn, đi êm bảo vệ thiết bị"
+        },
+        {
+          "noi": "Nhà xưởng, kho cao tầng",
+          "vi_sao": "Điều khiển thang máy qua IoT, tự giải ùn tắc"
+        }
+      ],
+      "khach_hang": "",
+      "doc": {
+        "gioi_thieu": "PUDU T sáu trăm là gã khổng lồ vận chuyển tải sáu trăm ki lô gam mỗi chuyến. Tự nhận diện kệ hàng để lấy và đặt, tự gọi thang máy rảnh. Còn có bản chui gầm chỉ cao hai mươi lăm xen ti mét.",
+        "thong_so": "Máy cao một mét ba lăm, nặng một trăm mười hai ki lô, tải sáu trăm ki lô gam. Sạc hai giờ, chạy mười hai giờ. Lối đi tối thiểu bảy mươi xen ti mét, vượt rãnh ba phẩy năm xen ti mét.",
+        "phu_hop": "T sáu trăm hợp với nhà máy ô tô, cơ khí, chế tạo nặng, tổng kho thương mại điện tử và nhà máy điện tử quy mô lớn."
+      }
+    }
+  ],
+  "dung_thu": {
+    "tieu_de": "Đăng ký dùng thử miễn phí",
+    "phu_de": "Trải nghiệm robot ngay tại mặt bằng của quý khách — không mất phí",
+    "buoc": [
+      {
+        "icon": "🤖",
+        "t": "Robot đến tận nơi",
+        "m": "Roboworld mang đúng dòng robot quý khách chọn tới nhà máy, nhà hàng, toà nhà của quý khách"
+      },
+      {
+        "icon": "🛠️",
+        "t": "Kỹ thuật RBW lắp đặt trực tiếp",
+        "m": "Khảo sát mặt bằng, quét bản đồ, cấu hình và hướng dẫn nhân viên vận hành"
+      },
+      {
+        "icon": "📊",
+        "t": "Báo cáo đánh giá kỹ thuật",
+        "m": "Sau dùng thử, quý khách nhận báo cáo: robot chạy được ở đâu, hiệu quả thế nào, cần chuẩn bị gì"
+      },
+      {
+        "icon": "💬",
+        "t": "Không ràng buộc",
+        "m": "Dùng thử miễn phí, quyết định sau — đội tư vấn gọi lại trong 24 giờ để hẹn lịch"
+      }
+    ],
+    "doc": "Quý khách sẽ được trải nghiệm robot này miễn phí ngay tại mặt bằng của mình. Kỹ thuật viên Roboworld đến trực tiếp lắp đặt, và quý khách nhận báo cáo đánh giá kỹ thuật sau khi dùng thử. Mời quý khách bấm Tiếp tục để để lại thông tin liên hệ.",
+    "doc_form": "Mời quý khách điền tên, số điện thoại và tên công ty. Tỉnh thành có thể bỏ trống. Em sẽ chuyển ngay cho đội tư vấn ạ.",
+    "doc_cam_on": "Cảm ơn quý khách đã đăng ký! Đội tư vấn Roboworld sẽ gọi lại cho quý khách trong hai mươi bốn giờ để hẹn lịch dùng thử. Chúc quý khách một ngày tham quan thật vui!"
+  },
+  "loi": {
+    "cham_man_hinh": "Xin chào quý khách! Em là Nova, robot lễ tân của Roboworld. Quý khách muốn tìm hiểu robot cho lĩnh vực nào? Mời chọn trên màn hình ạ.",
+    "xem_tat_ca": "Đây là toàn bộ mười tám dòng robot Roboworld đang phân phối: robot phục vụ, lễ tân, vệ sinh công nghiệp và vận chuyển công nghiệp. Mời quý khách chạm vào một dòng máy.",
+    "gioi_thieu_cong_ty": "Roboworld là nhà phân phối PUDU Robotics đầu tiên tại Việt Nam từ năm hai nghìn không trăm hai mươi ba, đồng thời là đối tác uỷ quyền của Gausium và OrionStar. Chúng em có hơn ba mươi kỹ sư robotics và hơn ba mươi đại lý trên cả nước.",
+    "tam_biet": "Cảm ơn quý khách đã ghé thăm Roboworld. Hẹn gặp lại ạ!",
+    "thue_robot": "Roboworld có dịch vụ cho thuê robot theo ngày cho sự kiện và theo tháng cho vận hành. Quý khách để lại thông tin, đội tư vấn sẽ gọi lại ạ."
+  }
+}
